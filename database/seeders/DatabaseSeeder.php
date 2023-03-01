@@ -21,6 +21,12 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             FritosSeeder::class,
             EntrantesSeeder::class,
+            PescadosSeeder::class,
+            CarnesSeeder::class, 
+            PostresSeeder::class, 
+            TBizcochoSeeder::class,
+            THojaldreSeeder::class,
+            TVariadasSeeder::class,
         ]);
     }
 }

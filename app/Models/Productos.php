@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Categoria;
+use App\Models\Pedidos;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +22,13 @@ class Productos extends Model
         'categoria_id',
     ];
 
+    // FUNCIONES
+
     public function categoria() {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function pedidos() {
+        return $this->belongsToMany(Pedidos::class, 'pedido_productos');
     }
 }

@@ -7,34 +7,35 @@ use App\Models\Productos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FritosSeeder extends Seeder
+class CarnesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * @return void
      */
     public function run(): void
     {
-        // Productos Fritos
+        // Carnes seeder
 
         Productos::create([
-            'name' => 'Croquetas de hongos',
-            'description' => 'ración 12 unidades',
+            'name' => 'Albóndigas de pollo en salsa verde',
+            'description' => 'Pedido mínimo 2 raciones',
             'tipo_vender' => 'RACIONES',
-            'precio_base' => 5.60,
+            'precio_base' => 5.00,
             'pedido_minimo' => 2,
             'alt' => null,
-            'categoria_id' => 1,
+            'categoria_id' => 4,
         ]);
 
         Productos::create([
-            'name' => 'Tigres (mejillones rellenos)',
-            'description' => 'ración 12 unidades',
+            'name' => 'Carrilleras ibéricas al Rioja Alavesa',
+            'description' => 'Pedido mínimo 2 raciones',
             'tipo_vender' => 'RACIONES',
-            'precio_base' => 6.00,
+            'precio_base' => 7.15,
             'pedido_minimo' => 2,
             'alt' => null,
-            'categoria_id' => 1,
+            'categoria_id' => 4,
         ]);
-
     }
 }

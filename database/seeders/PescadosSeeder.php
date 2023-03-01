@@ -7,34 +7,35 @@ use App\Models\Productos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FritosSeeder extends Seeder
+class PescadosSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * @return void
      */
     public function run(): void
     {
-        // Productos Fritos
-
+        // Pescados seeder
+        
         Productos::create([
-            'name' => 'Croquetas de hongos',
-            'description' => 'ración 12 unidades',
+            'name' => 'Bacalao a la bizkaina',
+            'description' => 'Pedido mínimo 2 raciones',
             'tipo_vender' => 'RACIONES',
-            'precio_base' => 5.60,
+            'precio_base' => 10.70,
             'pedido_minimo' => 2,
             'alt' => null,
-            'categoria_id' => 1,
+            'categoria_id' => 3,
         ]);
 
         Productos::create([
-            'name' => 'Tigres (mejillones rellenos)',
-            'description' => 'ración 12 unidades',
+            'name' => 'Chipirones en su tinta',
+            'description' => 'Pedido mínimo 2 raciones',
             'tipo_vender' => 'RACIONES',
-            'precio_base' => 6.00,
+            'precio_base' => 7.10,
             'pedido_minimo' => 2,
             'alt' => null,
-            'categoria_id' => 1,
+            'categoria_id' => 3,
         ]);
-
     }
 }

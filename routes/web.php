@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $categorias = Categoria::where('parent_id', '=', null)->get();
+    return view('pruebas', ['categorias' => $categorias]);
 });
 
 Route::get('/dashboard', function () {

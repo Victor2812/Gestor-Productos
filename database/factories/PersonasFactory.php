@@ -21,6 +21,7 @@ class PersonasFactory extends Factory
             'surname' => fake()->lastName(),
             'dni' => fake()->dni(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->mobileNumber(),
             'password' => '$2y$10$aXpL2pNCiotD3iVAnklKr.MJVH/fsuiLFjVS/JBL7IEGKLJzq2PTa', // admin
         ];
     }

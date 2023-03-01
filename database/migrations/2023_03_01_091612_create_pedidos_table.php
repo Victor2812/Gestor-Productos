@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
+            $table->string('estado', 100);
+            $table->date('fecha_recogida');
+            $table->date('fecha_reserva')->useCurrent();
+            $table->double('importe_total', 8, 2);
+            $table->foreignId('persona_id')->constrained('personas');
             $table->timestamps();
         });
     }
