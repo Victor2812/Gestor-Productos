@@ -3,7 +3,5 @@
 @section('title', 'Home')
 
 @section('body')
-    <h1>HOLA</h1>
-    <a href="">Carrito</a>
-    <a href="">Iniciar sesion</a>
+    <h1>ADMIN</h1>
 @endsection
