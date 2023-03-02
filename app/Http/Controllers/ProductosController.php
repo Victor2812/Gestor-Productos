@@ -13,13 +13,9 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Productos::all();
-        return view('dashboard', [
-            'productos' => $productos,
+        return view('productos.index', [
+            'products' => $productos,
         ]);
-    }
-
-    public function cart() {
-        
     }
 
     /**
@@ -68,5 +64,53 @@ class ProductosController extends Controller
     public function destroy(Productos $productos)
     {
         //
+    }
+
+
+    // CART PRODUCT FUNCTIONS
+
+    public function cart() {
+        return view('cart');
+    }
+
+    public function addToCart($id) {
+        
+        $product = Productos::findOrFail($id);
+
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "precio" => $product->precio_base,
+                "image" => $product->alt
+            ];
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully');
+    }
+
+    public function cartUpdate(Request $request) {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    public function removeFromCart(Request $request) {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
     }
 }
