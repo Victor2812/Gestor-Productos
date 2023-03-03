@@ -1,5 +1,9 @@
 <!--Formulario de login-->
+@extends('layouts.app')
 
+@section('title', 'Home')
+
+@section('body')
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -46,4 +50,5 @@
             </x-primary-button>
         </div>
     </form>
-    
+
+@endsection

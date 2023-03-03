@@ -1,4 +1,9 @@
 <!--Formulario de registro-->
+@extends('layouts.app')
+
+@section('title', 'Home')
+
+@section('body')
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -71,3 +76,4 @@
         </div>
     </form>
 
+    @endsection
