@@ -22,7 +22,7 @@
                     @foreach ($productos as $item)
                         <div class="col-lg-3">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
-                                <img src="/images/{{ $item->image_path }}"
+                                <img src="{{ $item->alt }}"
                                     class="card-img-top mx-auto"
                                     style="height: 150px; width: 150px;display: block;"
                                     alt="{{ $item->alt }}">
