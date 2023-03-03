@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Productos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductosController extends Controller
 {
@@ -13,8 +15,11 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Productos::all();
+        $categorias = Categoria::where('parent_id', '=', null)->get()->all();
+
         return view('productos.index', [
             'products' => $productos,
+            'categorias' => $categorias,
         ]);
     }
 
@@ -37,9 +42,15 @@ class ProductosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Productos $productos)
+    public function show($id)
     {
-        //
+        $productos = Productos::where('categoria_id', "=", $id)->get()->all();
+        $categoria = Categoria::where('id', "=", $id)->get()->first();
+
+        return view('productos.show', [
+            'productos' => $productos,
+            'categoria' => $categoria,
+        ]);
     }
 
     /**
@@ -70,7 +81,7 @@ class ProductosController extends Controller
     // CART PRODUCT FUNCTIONS
 
     public function cart() {
-        return view('cart');
+        return view('productos.cart');
     }
 
     public function addToCart($id) {
@@ -84,6 +95,7 @@ class ProductosController extends Controller
         } else {
             $cart[$id] = [
                 "name" => $product->name,
+                "descrition" => $product->descrition,
                 "quantity" => 1,
                 "precio" => $product->precio_base,
                 "image" => $product->alt
@@ -91,7 +103,7 @@ class ProductosController extends Controller
         }
 
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully');
+        return redirect()->back()->with('success', 'Producto añadido al carrito exitosamente');
     }
 
     public function cartUpdate(Request $request) {
@@ -99,7 +111,7 @@ class ProductosController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
+            session()->flash('success', 'El carrito se ha modificado exitosamente');
         }
     }
 
@@ -110,7 +122,7 @@ class ProductosController extends Controller
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Product removed successfully');
+            session()->flash('success', 'Producto eliminado del carrito exitosamente');
         }
     }
 }

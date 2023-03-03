@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow-sm">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow-sm ">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             E-COMMERCE TIENDA
@@ -22,7 +22,7 @@
                         <div class="dropdown-menu">
                             <div class="row total-header-section">
                                 <div class="col-lg-6 col-sm-6 col-6">
-                                    <i class="bi bi-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                                    <i class="bi bi-cart" aria-hidden="true" style="color: black"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                                 </div>
 
                                 @php $total = 0 @endphp
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                             <p>{{ $details['name'] }}</p>
-                                            <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                            <span class="price text-info"> ${{ $details['precio'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
                                         </div>
                                     </div>
                                 @endforeach
@@ -51,7 +51,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                    <a href="{{ route('cart.index') }}" class="btn btn-primary btn-block">View all</a>
+                                    <a href="{{ route('cart.index') }}" class="btn btn-primary btn-block">Ver Carrito</a>
                                 </div>
                             </div>
                         </div>

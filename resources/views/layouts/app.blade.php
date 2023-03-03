@@ -16,7 +16,7 @@
     </head>
     <body>
         @include('partials.navbar')
-
+        
         @yield('body')
     </body>
 </html>

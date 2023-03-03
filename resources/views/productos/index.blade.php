@@ -14,6 +14,30 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-7">
+                        <h4>Categorias</h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    @foreach ($categorias as $cat)
+                        <div class="col-lg-3">
+                            <a href="{{ route('producto.categoria', $cat->id) }}" class="custom-card">
+                                <div class="card" style="width: 18rem">
+                                    <img src="#" alt="Card image cap" class="card-img mx-auto">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{ $cat->name }}</h5>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>                       
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-7">
                         <h4>Productos</h4>
                     </div>
                 </div>
@@ -25,10 +49,9 @@
                                 <img src="/images/{{ $pro->image_path }}"
                                     class="card-img-top mx-auto"
                                     style="height: 150px; width: 150px;display: block;"
-                                    alt="{{ $pro->image_path }}"
-                                >
+                                    alt="{{ $pro->alt }}">
                                 <div class="card-body">
-                                    <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
+                                    <h6 class="card-title">{{ $pro->name }}</h6>
                                     <p>${{ $pro->precio_base }}</p>
                                     <div class="card-footer" style="background-color: white;">
                                         <div class="row">

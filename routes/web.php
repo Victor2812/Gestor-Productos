@@ -37,8 +37,12 @@ Route::get('/', [ProductosController::class, 'index'])->name('shop');
 Route::get('cart', [ProductosController::class, 'cart'])->name('cart.index');
 Route::get('add-to-card/{id}', [ProductosController::class, 'addToCart'])->name('cart.store');
 Route::post('update', [ProductosController::class, 'cartUpdate'])->name('cart.update');
-Route::post('remove', [ProductosController::class, 'removeFromCart'])->name('cart.remove');
+Route::delete('remove', [ProductosController::class, 'removeFromCart'])->name('cart.remove');
 //Route::post('/clear', [ProductosController::class, 'clear'])->name('cart.clear');
 
+
+// Productos por categoria
+
+Route::get('categoria/{id}', [ProductosController::class, 'show'])->name('producto.categoria');
 
 require __DIR__.'/auth.php';
