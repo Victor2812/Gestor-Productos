@@ -75,5 +75,4 @@
             </x-primary-button>
         </div>
     </form>
-
-    @endsection
+@endsection
