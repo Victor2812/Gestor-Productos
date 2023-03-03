@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Personas;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -32,16 +33,23 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'surname' => ['required', 'string', 'max:255'],
+            'dni' => ['required'],
+            'phone' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Personas::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        $user = User::create([
+        
+        $user = Personas::create([
             'name' => $request->name,
+            'surname' => $request->surname,
+            'dni' => $request->dni,
+            'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => 2
         ]);
-
+      //  dd($user);
         event(new Registered($user));
 
         Auth::login($user);

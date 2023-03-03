@@ -5,5 +5,5 @@
 @section('body')
     <h1>HOLA</h1>
     <a href="">Carrito</a>
-    <a href="">Iniciar sesion</a>
+    <a href="{{ route('login') }}">Iniciar sesion</a>
 @endsection
