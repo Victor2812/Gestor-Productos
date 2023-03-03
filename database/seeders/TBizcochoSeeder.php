@@ -24,7 +24,7 @@ class TBizcochoSeeder extends Seeder
             'tipo_vender' => 'KILO',
             'precio_base' => 10.80,
             'pedido_minimo' => 1,
-            'alt' => null,
+            'alt' => asset("imgs/tarta-san-marcos.png"),
             'categoria_id' => 6,
         ]);
     }

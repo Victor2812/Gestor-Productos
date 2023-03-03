@@ -24,7 +24,7 @@ class PostresSeeder extends Seeder
             'tipo_vender' => 'KILO',
             'precio_base' => 3.04,
             'pedido_minimo' => 1,
-            'alt' => null,
+            'alt' => asset("imgs/mousse.png"),
             'categoria_id' => 5,
         ]);
 
@@ -34,7 +34,7 @@ class PostresSeeder extends Seeder
             'tipo_vender' => 'KILO',
             'precio_base' => 3.04,
             'pedido_minimo' => 1,
-            'alt' => null,
+            'alt' => asset("imgs/tiramisu.png"),
             'categoria_id' => 5,
         ]);
     }

@@ -87,18 +87,20 @@ class ProductosController extends Controller
     public function addToCart($id) {
         
         $product = Productos::findOrFail($id);
-
+        
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
+            dd($product);
         } else {
+            //dd($product, 'else block');
             $cart[$id] = [
                 "name" => $product->name,
                 "descrition" => $product->descrition,
                 "quantity" => 1,
                 "precio" => $product->precio_base,
-                "image" => $product->alt
+                "image" => $product->alt,
             ];
         }
 

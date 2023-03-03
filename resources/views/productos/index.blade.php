@@ -23,7 +23,7 @@
                         <div class="col-lg-3">
                             <a href="{{ route('producto.categoria', $cat->id) }}" class="custom-card">
                                 <div class="card" style="width: 18rem">
-                                    <img src="#" alt="Card image cap" class="card-img mx-auto">
+                                    <!-- ICON -->
                                     <div class="card-body">
                                         <h5 class="card-title text-center">{{ $cat->name }}</h5>
                                     </div>
@@ -46,7 +46,7 @@
                     @foreach($products as $pro)
                         <div class="col-lg-3">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
-                                <img src="/images/{{ $pro->image_path }}"
+                                <img src="{{ $pro->alt }}"
                                     class="card-img-top mx-auto"
                                     style="height: 150px; width: 150px;display: block;"
                                     alt="{{ $pro->alt }}">

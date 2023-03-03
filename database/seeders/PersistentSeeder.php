@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Personas;
+use App\Models\Productos;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

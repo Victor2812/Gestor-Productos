@@ -24,7 +24,7 @@ class TVariadasSeeder extends Seeder
             'tipo_vender' => 'KILO',
             'precio_base' => 7.70,
             'pedido_minimo' => 1,
-            'alt' => null,
+            'alt' => asset("imgs/tarta-manzana.png"),
             'categoria_id' => 8,
         ]);
     }

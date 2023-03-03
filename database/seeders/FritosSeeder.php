@@ -15,14 +15,14 @@ class FritosSeeder extends Seeder
     public function run(): void
     {
         // Productos Fritos
-
+        
         Productos::create([
             'name' => 'Croquetas de hongos',
             'description' => 'ración 12 unidades',
             'tipo_vender' => 'RACIONES',
             'precio_base' => 5.60,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/croquetas.png"),
             'categoria_id' => 1,
         ]);
 
@@ -32,7 +32,7 @@ class FritosSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 6.00,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/tigres.png"),
             'categoria_id' => 1,
         ]);
 

@@ -24,7 +24,7 @@ class EntrantesSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 4.30,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/canelones.png"),
             'categoria_id' => 2,
         ]);
 
@@ -34,7 +34,7 @@ class EntrantesSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 5.50,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/piquillos.png"),
             'categoria_id' => 2,
         ]);
     }

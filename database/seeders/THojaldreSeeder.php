@@ -24,7 +24,7 @@ class THojaldreSeeder extends Seeder
             'tipo_vender' => 'KILO',
             'precio_base' => 8.16,
             'pedido_minimo' => 1,
-            'alt' => null,
+            'alt' => asset("imgs/tarta-milhojas.png"),
             'categoria_id' => 7,
         ]);
     }

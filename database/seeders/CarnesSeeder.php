@@ -24,7 +24,7 @@ class CarnesSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 5.00,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/albondigas.png"),
             'categoria_id' => 4,
         ]);
 
@@ -34,7 +34,7 @@ class CarnesSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 7.15,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/carrilleras.png"),
             'categoria_id' => 4,
         ]);
     }

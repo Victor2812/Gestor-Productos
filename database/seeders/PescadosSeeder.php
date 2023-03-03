@@ -24,7 +24,7 @@ class PescadosSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 10.70,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/bacalao.png"),
             'categoria_id' => 3,
         ]);
 
@@ -34,7 +34,7 @@ class PescadosSeeder extends Seeder
             'tipo_vender' => 'RACIONES',
             'precio_base' => 7.10,
             'pedido_minimo' => 2,
-            'alt' => null,
+            'alt' => asset("imgs/chipirones.png"),
             'categoria_id' => 3,
         ]);
     }
