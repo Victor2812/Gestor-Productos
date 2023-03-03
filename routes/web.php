@@ -23,9 +23,9 @@ Route::get('/', function () {
     return view('home', ['categorias' => $categorias]);
 });
 */
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', [ProductosController::class, 'index'])->name('shop');
+Route::get('/tienda', [ProductosController::class, 'index'])->name('shop');
 Route::get('cart', [ProductosController::class, 'cart'])->name('cart.index');
 Route::get('add-to-card/{id}', [ProductosController::class, 'addToCart'])->name('cart.store');
 Route::post('update', [ProductosController::class, 'cartUpdate'])->name('cart.update');
