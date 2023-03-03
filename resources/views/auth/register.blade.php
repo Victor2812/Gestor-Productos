@@ -1,4 +1,9 @@
-<x-guest-layout>
+<!--Formulario de registro-->
+@extends('layouts.app')
+
+@section('title', 'Home')
+
+@section('body')
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -6,6 +11,27 @@
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- surName -->
+        <div>
+            <x-input-label for="surname" :value="__('Surname')" />
+            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus autocomplete="surname" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+         <!-- dni -->
+         <div>
+            <x-input-label for="dni" :value="__('dni')" />
+            <x-text-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="old('dni')" required autofocus autocomplete="dni" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+         <!-- phone -->
+         <div>
+            <x-input-label for="phone" :value="__('phone')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -49,4 +75,5 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+
+    @endsection

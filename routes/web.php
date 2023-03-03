@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 /*
 Route::get('/', function () {
-
     $categorias = Categoria::where('parent_id', '=', null)->get();
     return view('home', ['categorias' => $categorias]);
 });
