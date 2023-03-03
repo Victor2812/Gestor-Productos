@@ -1,4 +1,6 @@
-document.querySelector(".update-cart").change(function (e) {
+let cantidad = document.querySelector(".update-cart")
+
+cantidad.addEventListener("change", function (e) {
     e.preventDefault();
 
     var ele = document.querySelector(this);

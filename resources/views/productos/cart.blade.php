@@ -37,13 +37,13 @@
                                 <h6 class="text-black mb-0">{{ $details['descrition'] }}</h6>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2 text-dark"
+                                <button class="btn btn-link px-2 text-dark mx-1"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="bi bi-" style="color:black"></i>
+                                <i class="bi bi-dash" style="color:black"></i>
                                 </button>
         
                                 <input id="form1" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number"
-                                class="form-control form-control-sm update-cart" />
+                                class="form-control form-control-sm update-cart" style="width: 3rem"/>
         
                                 <button class="btn btn-link px-2"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -53,7 +53,7 @@
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                 <h6 class="mb-0">€ {{ $details['precio'] * $details['quantity'] }}</h6>
                             </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end remove-from-cart">
                                 <a href="{{ route('cart.remove') }}" class="text-muted"><i class="bi bi-trash3" style="color: black"></i></a>
                             </div>
                             </div>
