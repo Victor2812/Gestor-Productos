@@ -2,15 +2,8 @@
 
 @section('title', 'Home')
 
-@section('body')
+@section('content')
     <div class="container">
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tienda</li>
-            </ol>
-        </nav>
 
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -41,7 +34,7 @@
                             <div class="image-container">
                                 <div class="first">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="price">{{ $pro->precio_base }} €</span>
+                                        <span class="product-price">{{ $pro->precio_base }} €</span>
                                     </div>
                                 </div>
                                 <img src="{{ $pro->alt }}" alt="{{ $pro->alt }}" class="img-fluid rounded thumbnail-image">

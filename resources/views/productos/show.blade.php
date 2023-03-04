@@ -2,14 +2,9 @@
 
 @section('title', 'Productos')
 
-@section('body')
-    <div class="container" style="margin-top: 80px">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item" aria-current="page">{{ $categoria->name }}</li>
-            </ol>
-        </nav>
+@section('content')
+    <div class="container">
+        
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="row">
@@ -25,7 +20,7 @@
                             <div class="image-container">
                                 <div class="first">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="price">{{ $item->precio_base }} €</span>
+                                        <span class="product-price">{{ $item->precio_base }} €</span>
                                     </div>
                                 </div>
                                 <img src="{{ $item->alt }}" alt="{{ $item->alt }}" class="img-fluid rounded thumbnail-image">

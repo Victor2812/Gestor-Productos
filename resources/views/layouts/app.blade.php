@@ -18,6 +18,8 @@
     <body>
         @include('partials.navbar')
         
-        @yield('body')
+        @yield('content')
+
+        @include('partials.footer')
     </body>
 </html>
