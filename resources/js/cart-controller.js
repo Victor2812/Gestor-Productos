@@ -27,7 +27,7 @@ function updateCart(obj) {
     //console.log(obj.closest("li").getAttribute("id"));
     
     fetch('/update-cart', {
-        method: 'PATCH',
+        method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
