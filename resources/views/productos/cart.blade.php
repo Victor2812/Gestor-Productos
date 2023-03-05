@@ -9,8 +9,10 @@
         <div class="col-12">
           <div class="card card-registration card-registration-2" style="border-radius: 15px;">
             <div class="card-body p-0">
+
+              <!-- SHOPPING CART -->
               <div class="row g-0">
-                <div class="col-lg-8">
+                <ul class="col-lg-8">
                   <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
                       <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
@@ -26,7 +28,7 @@
                     
                     @if(session('cart'))
                         @foreach (session('cart') as $item => $details)
-                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                          <li class="row mb-4 d-flex justify-content-between align-items-center" id="{{ $item }}">
                             <div class="col-md-2 col-lg-2 col-xl-2">
                                 <img
                                 src="{{ $details['image'] }}"
@@ -37,16 +39,14 @@
                                 <h6 class="text-black mb-0">{{ $details['descrition'] }}</h6>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2 text-dark mx-1"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <button class="btn btn-link px-2 text-dark mx-1" name="resta">
                                 <i class="bi bi-dash" style="color:black"></i>
                                 </button>
         
-                                <input id="form1" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number"
+                                <input id="{{ $item }}" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number"
                                 class="form-control form-control-sm update-cart" style="width: 3rem"/>
         
-                                <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <button class="btn btn-link px-2" name="suma">
                                 <i class="bi bi-plus" style="color:black"></i>
                                 </button>
                             </div>
@@ -54,9 +54,9 @@
                                 <h6 class="mb-0">€ {{ $details['precio'] * $details['quantity'] }}</h6>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end remove-from-cart">
-                                <a href="{{ route('cart.remove') }}" class="text-muted"><i class="bi bi-trash3" style="color: black"></i></a>
+                              <i class="bi bi-trash3" style="color: black"></i>
                             </div>
-                            </div>
+                          </li>
         
                             <hr class="my-4">
                         @endforeach
@@ -67,7 +67,9 @@
                             class="bi bi-arrow-left" style="color:black"></i></a></h6>
                     </div>
                   </div>
-                </div>
+                </ul>
+
+                <!-- SUMMMARY -->
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>

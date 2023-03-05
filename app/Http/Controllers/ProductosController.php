@@ -92,7 +92,7 @@ class ProductosController extends Controller
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
-            dd($product);
+            //dd($product);
         } else {
             //dd($product, 'else block');
             $cart[$id] = [
@@ -114,10 +114,13 @@ class ProductosController extends Controller
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
             session()->flash('success', 'El carrito se ha modificado exitosamente');
+
+            return redirect()->back();
         }
     }
 
     public function removeFromCart(Request $request) {
+        //dd($request);
         if ($request->id) {
             $cart = session()->get('cart');
             if (isset($cart[$request->id])) {

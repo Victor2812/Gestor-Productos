@@ -3,9 +3,7 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             E-COMMERCE TIENDA
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -14,8 +12,8 @@
                 <li class="nav-item">
                     <div class="dropdown">
                         <!-- CART ICON DROPDOWN MENU -->
-                        <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        <button type="button" class="btn btn-info b-cart" data-count="{{ count((array) session('cart')) }}" data-bs-toggle="dropdown">
+                            <i class="bi bi-cart" aria-hidden="true"></i>
                         </button>
                             
                         <!-- Dropdown Cart Menu -->

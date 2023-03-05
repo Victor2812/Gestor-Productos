@@ -1,40 +1,86 @@
-let cantidad = document.querySelector(".update-cart")
+const inputResta = document.getElementsByName('resta');
+const inputSuma = document.getElementsByName('suma');
+const trash = document.querySelectorAll('.remove-from-cart');
 
-cantidad.addEventListener("change", function (e) {
-    e.preventDefault();
-
-    var ele = document.querySelector(this);
-
-    $.ajax({
-        url: "{{ route('update.cart') }}",
-        method: "patch",
-        data: {
-            _token: '{{ csrf_token() }}', 
-            id: ele.parents("tr").attr("data-id"), 
-            quantity: ele.parents("tr").querySelector(".quantity").value
-        },
-        success: function (response) {
-           window.location.reload();
-        }
+inputResta.forEach(el => {
+    el.addEventListener('click', function() {
+        this.parentNode.querySelector(".update-cart").stepDown(); 
+         
+        //console.log(this.parentNode.querySelector(".update-cart"));
+        
+        updateCart(this.parentNode.querySelector(".update-cart"));
     });
 });
 
-document.querySelector(".remove-from-cart").click(function (e) {
-    e.preventDefault();
+//document.querySelectorAll(".update-cart").dispatchEvent(ev);
 
-    var ele = document.querySelector(this);
+inputSuma.forEach(el => {
+    el.addEventListener('click', function() {
+        this.parentNode.querySelector(".update-cart").stepUp();
 
-    if(confirm("Are you sure want to remove?")) {
-        $.ajax({
-            url: "{{ route('remove.from.cart') }}",
-            method: "DELETE",
-            data: {
-                _token: '{{ csrf_token() }}', 
-                id: ele.parents("tr").attr("data-id")
+        updateCart(this.parentNode.querySelector(".update-cart"));
+    })
+});
+
+function updateCart(obj) {
+    //console.log(obj.value);
+    //console.log(obj.closest("li").getAttribute("id"));
+    
+    fetch('/update-cart', {
+        method: 'PATCH',
+        headers: { 
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token').getAttribute('content')
+        },
+        body: JSON.stringify({ 
+            id: obj.closest("li").getAttribute("id"),
+            quantity: obj.value,
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('response ok');
+        } else {
+            console.log('response error');
+        }
+    })
+    .then(data => {
+        window.location.reload();
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    
+}
+
+trash.forEach(tr => {
+    tr.addEventListener("click", function() {
+        //console.log(tr.closest("li").getAttribute("id"));
+
+        fetch('/remove-from-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token').getAttribute('content')
             },
-            success: function (response) {
-                window.location.reload();
+            body: JSON.stringify({ 
+                id: tr.closest("li").getAttribute("id"),
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('response ok');
+            } else {
+                console.log('response error');
             }
-        });
-    }
+        })
+        .then(result => {
+            window.location.reload();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
 });

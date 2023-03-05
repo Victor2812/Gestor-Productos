@@ -1,0 +1,20 @@
+.b-cart {
+    position: relative;
+    font-size: larger;
+}
+
+.b-cart::before {
+    content: attr(data-count);
+    position: absolute;
+    top: -0.6em;
+    right: -0.6em;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: medium;
+}
