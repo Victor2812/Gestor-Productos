@@ -1,7 +1,7 @@
 <?php
 namespace App\DataTables;
 
-use App\Models\Pedido;
+use App\Models\Pedidos;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,10 +13,14 @@ class PedidoDataTable extends DataTable
 {
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id');
+        return datatables()
+        ->eloquent($query)
+        ->addColumn('acciones',function($model){
+            return view('partials.acciones',compact('model'));
+        });
     }
 
-    public function query(Pedido $model): QueryBuilder
+    public function query(Pedidos $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -49,6 +53,7 @@ class PedidoDataTable extends DataTable
             Column::make('fecha_recogida'),
             Column::make('importe_total'),
             Column::make('persona_id'),
+            Column::make('acciones'),
         ];
     }
 

@@ -42,7 +42,7 @@ Route::resource('pedidos', PedidosController::class);
 Route::resource('categorias', CategoriaController::class);
 
 
-Route::get('/tienda', [ProductosController::class, 'index'])->name('shop');
+Route::get('/tienda', [ProductosController::class, 'shop'])->name('shop');
 Route::get('cart', [ProductosController::class, 'cart'])->name('cart.index');
 Route::get('add-to-card/{id}', [ProductosController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [ProductosController::class, 'cartUpdate'])->name('cart.update');

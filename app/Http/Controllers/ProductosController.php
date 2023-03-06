@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Productos;
+use App\DataTables\ProductoDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function shop()
     {
         $productos = Productos::all();
         $categorias = Categoria::where('parent_id', '=', null)->get()->all();
@@ -21,6 +19,14 @@ class ProductosController extends Controller
             'products' => $productos,
             'categorias' => $categorias,
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(ProductoDataTable $dataTable)
+    {
+        return $dataTable->render('productos.table');
     }
 
     /**
@@ -85,9 +91,9 @@ class ProductosController extends Controller
     }
 
     public function addToCart($id) {
-        
+
         $product = Productos::findOrFail($id);
-        
+
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {

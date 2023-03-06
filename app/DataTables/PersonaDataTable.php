@@ -1,7 +1,7 @@
 <?php
 namespace App\DataTables;
 
-use App\Models\Persona;
+use App\Models\Personas;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,10 +13,14 @@ class PersonaDataTable extends DataTable
 {
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id');
+        return datatables()
+        ->eloquent($query)
+        ->addColumn('acciones',function($model){
+            return view('partials.acciones',compact('model'));
+        });
     }
 
-    public function query(Persona $model): QueryBuilder
+    public function query(Personas $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -48,6 +52,7 @@ class PersonaDataTable extends DataTable
             Column::make('email'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('acciones'),
         ];
     }
 

@@ -16,7 +16,7 @@ class CategoriaDataTable extends DataTable
         return datatables()
         ->eloquent($query)
         ->addColumn('acciones',function($model){
-            return "<a href='".route('cart.index')."'>Cart</a>";
+            return view('partials.acciones',compact('model'));
         });
     }
 
@@ -31,7 +31,7 @@ class CategoriaDataTable extends DataTable
                     ->setTableId('categorias-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('add'),
