@@ -19,9 +19,11 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create($ruta = null): View
     {
-        return view('auth.register');
+        return view('auth.register', [
+            "ruta" => $ruta
+        ]);
     }
 
     /**
@@ -29,7 +31,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, $ruta): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -39,7 +41,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Personas::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        
+
         $user = Personas::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -53,13 +55,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        if(is_null($ruta))
+        if(is_null($request->ruta))
         {
             return redirect(RouteServiceProvider::HOME);
         }
         else
         {
-            return redirect()->route($ruta);
+            return redirect()->route($request->ruta);
         }
 
     }

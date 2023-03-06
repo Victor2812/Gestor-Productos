@@ -108,7 +108,7 @@
                     @auth
                       <a href="" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Realizar pedido</a>
                     @else
-                      <a href="{{ route('register', ['ruta' => route('cart.index') ] ) }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Registrar</a>
+                      <a href="{{ route('register', ['ruta' => 'cart.index' ] ) }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Registrar</a>
                     @endauth
   
                   </div>
