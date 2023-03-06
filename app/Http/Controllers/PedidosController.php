@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedidos;
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class PedidosController extends Controller
 {
@@ -20,7 +22,7 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -28,7 +30,40 @@ class PedidosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productos = session()->get("cart");
+        
+        $total = 0;
+        foreach((array) session('cart') as $id => $details)
+        {
+            $total += $details['precio'] * $details['quantity'];
+        }
+
+        DB::beginTransaction();
+        try{
+        $pedido = auth()->user()->pedidos()->create([
+            "estado" => Pedidos::ESTADOS['recibido'],
+            "fecha_recogida" => $request->fecha,
+            "fecha_reserva" => now(),
+            "importe_total" => $total,
+        ]);
+
+        foreach($productos as $producto)
+        {
+         $pedido->productos()->attach($producto['product_id'],['cantidad' => $producto['quantity'],'precio' => (float) $producto['precio'] * $producto['quantity'] ]);  
+        }
+        
+        DB::commit();
+
+        $request->session()->forget('cart');
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+    catch(\Exception $e)
+    {
+        DB::rollBack();
+        dd($e->getMessage());
+    }
+
     }
 
     /**
@@ -61,5 +96,13 @@ class PedidosController extends Controller
     public function destroy(Pedidos $pedidos)
     {
         //
+    }
+
+
+    //FUNCION PARA MOSTRAR EL CALENDARIO
+    public function calendario() {
+
+        //dd(session()->get("cart"));
+        return view("cart.calendario");
     }
 }

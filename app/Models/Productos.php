@@ -29,6 +29,7 @@ class Productos extends Model
     }
 
     public function pedidos() {
-        return $this->belongsToMany(Pedidos::class, 'pedido_productos');
+        return $this->belongsToMany(Pedidos::class, 'pedido_productos','producto_id','pedido_id')
+        ->withTimestamps();
     }
 }

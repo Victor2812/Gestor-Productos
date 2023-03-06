@@ -37,7 +37,7 @@ class Personas extends Authenticatable
     }
 
     public function pedidos() {
-        return $this->hasMany(Pedidos::class);
+        return $this->hasMany(Pedidos::class,'persona_id');
     }
 
     public function fullName() {

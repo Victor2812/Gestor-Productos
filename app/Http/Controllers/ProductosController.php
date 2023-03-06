@@ -96,6 +96,7 @@ class ProductosController extends Controller
         } else {
             //dd($product, 'else block');
             $cart[$id] = [
+                "product_id" => $product->id,
                 "name" => $product->name,
                 "descrition" => $product->descrition,
                 "quantity" => 1,

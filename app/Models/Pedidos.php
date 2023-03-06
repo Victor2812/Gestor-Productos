@@ -20,13 +20,20 @@ class Pedidos extends Model
         'persona_id'
     ];
 
+    const ESTADOS = [
+        'recibido' => 'recibido',
+        'en proceso' => 'en proceso',
+        'finalizado' => 'finalizado',
+    ];
+
     // FUNCIONES 
 
     public function cliente() {
-        return $this->belongsTo(Personas::class);
+        return $this->belongsTo(Personas::class,'persona_id');
     }
 
     public function productos() {
-        return $this->belongsToMany(Productos::class, 'pedido_productos');
+        return $this->belongsToMany(Productos::class, 'pedido_productos','pedido_id','producto_id')
+        ->withTimestamps();
     }
 }

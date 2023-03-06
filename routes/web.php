@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProductosController;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,10 @@ Route::post('/update-cart', [ProductosController::class, 'cartUpdate'])->name('c
 Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart']);
 //Route::post('/clear', [ProductosController::class, 'clear'])->name('cart.clear');
 
+
+//Pedidos
+Route::get("/pedido/calendario", [PedidosController::class, "calendario"])->name("pedido.calendario");
+Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.store");
 
 // Productos por categoria
 
