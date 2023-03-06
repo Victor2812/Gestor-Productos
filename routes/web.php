@@ -25,6 +25,10 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
+Route::get('/gorka', function () {
+    return view('pruebas_login_gorka');
+})->name('gorka-login');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,3 +49,5 @@ Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart'])
 Route::get('categoria/{id}', [ProductosController::class, 'show'])->name('producto.categoria');
 
 require __DIR__.'/auth.php';
+
+

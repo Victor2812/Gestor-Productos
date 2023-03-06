@@ -4,9 +4,11 @@
 @section('title', 'Home')
 
 @section('body')
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" class="py-5">
         @csrf
-
+        @if(isset($ruta))
+        <input type="hidden" name="ruta" value="{{ $ruta }} " />
+        @endif
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -75,5 +77,4 @@
             </x-primary-button>
         </div>
     </form>
-
-    @endsection
+@endsection
