@@ -49,9 +49,8 @@ class PersonaDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
+            Column::make('surname'),
             Column::make('email'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::make('acciones'),
         ];
     }
