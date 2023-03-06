@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\DataTables\CategoriaDataTable;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -10,9 +11,9 @@ class CategoriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CategoriaDataTable $dataTable)
     {
-        //
+        return $dataTable->render('categorias.home');
     }
 
     /**

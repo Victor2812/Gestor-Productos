@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedidos;
+use App\DataTables\PedidoDataTable;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
@@ -12,9 +13,9 @@ class PedidosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PedidoDataTable $dataTable)
     {
-        //
+        return $dataTable->render('pedidos.index');
     }
 
     /**
