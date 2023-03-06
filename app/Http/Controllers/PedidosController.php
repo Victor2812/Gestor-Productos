@@ -57,7 +57,7 @@ class PedidosController extends Controller
 
         $request->session()->forget('cart');
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('confirmacion');
     }
     catch(\Exception $e)
     {
@@ -100,10 +100,8 @@ class PedidosController extends Controller
     }
 
 
-    //FUNCION PARA MOSTRAR EL CALENDARIO
-    public function calendario() {
-
-        //dd(session()->get("cart"));
-        return view("cart.calendario");
+//FUNCION PARA MOSTRAR EL MENSAJE DE CONFIRMACION DEL PEDIDO
+    public function confirmacion() {
+        return view("pedidos.confirmacion");
     }
 }

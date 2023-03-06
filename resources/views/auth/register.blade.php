@@ -3,7 +3,7 @@
 
 @section('title', 'Home')
 
-@section('body')
+@section('content')
     <form method="POST" action="{{ route('register') }}" class="py-5">
         @csrf
         @if(isset($ruta))

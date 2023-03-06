@@ -1,9 +1,9 @@
 <!--Formulario de login-->
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Registro')
 
-@section('body')
+@section('content')
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -45,9 +45,9 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <button class="ml-3 dropdown-cart-btn btn-outline-primary btn-block">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 

@@ -90,7 +90,7 @@
                         <option value="4">Four</option>
                       </select>
                     </div>
-  
+                    <!--
                     <h5 class="text-uppercase mb-3">Give code</h5>
   
                     <div class="mb-5">
@@ -99,19 +99,27 @@
                         <label class="form-label" for="form3Examplea2">Enter your code</label>
                       </div>
                     </div>
-  
+                  -->
+                    <hr class="my-4">
+
+                    <form action="{{route('pedido.store')}}" method="POST">
+                      @csrf
+                      <input type="date" name="fecha" id="fecha" required/>
+                      
                     <hr class="my-4">
   
-                    <div class="d-flex justify-content-between mb-5">
-                      <h5 class="text-uppercase">Total price</h5>
-                      <h5>€ {{ $total }}</h5>
-                    </div>
-  
-                    @auth
-                      <a href="{{ route('pedido.calendario') }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Realizar pedido</a>
-                    @else
-                      <a href="{{ route('register', ['ruta' => 'cart.index' ] ) }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Registrar</a>
-                    @endauth
+                      <div class="d-flex justify-content-between mb-5">
+                        <h5 class="text-uppercase">Total price</h5>
+                        <h5>€ {{ $total }}</h5>
+                      </div>
+
+                    
+                      @auth
+                        <button type="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Realizar pedido</a>
+                      @else
+                        <a href="{{ route('register', ['ruta' => 'cart.index' ] ) }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Registrar</a>
+                      @endauth
+                    </form>
   
                   </div>
                 </div>

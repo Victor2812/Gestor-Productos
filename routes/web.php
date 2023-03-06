@@ -46,6 +46,7 @@ Route::resource('productos', ProductosController::class);
 Route::resource('pedidos', PedidosController::class);
 Route::resource('categorias', CategoriaController::class);
 
+Route::get('logout', [PersonasController::class, 'logout'])->name('logout');
 
 Route::get('/tienda', [ProductosController::class, 'shop'])->name('shop');
 Route::get('cart', [ProductosController::class, 'cart'])->name('cart.index');
@@ -62,6 +63,9 @@ Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.
 // Productos por categoria
 
 Route::get('categoria/{id}', [ProductosController::class, 'show'])->name('producto.categoria');
+
+// Confrimación creación pedido
+Route::get('confirmacion', [PedidosController::class, 'confirmacion'])->name('confirmacion');
 
 require __DIR__.'/auth.php';
 

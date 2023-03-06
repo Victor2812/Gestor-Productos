@@ -86,11 +86,25 @@
                 </div>
                 <!-- End Carrito -->
 
-                <!-- Login -->
-                <div>
-                    <a href="#">Iniciar Sesión</a>
+                <div class="d-flex flex-row align-items-center justify-content-center header-guapo">
+                    @auth
+                        <a href="">
+                            {{ auth()->user()->fullName()}}
+                        </a>
+                    @endauth
+
+                    <div class="divider d-none d-lg-inline"></div>
+
+                    <!-- Login -->
+                    <div>
+                        @auth
+                            <a href="{{ route('logout') }}">Cerrar sesión</a>
+                        @else 
+                            <a href="{{ route('login') }}">Iniciar sesión</a>
+                        @endauth
+                    </div>
+                    <!-- End Login -->
                 </div>
-                <!-- End Login -->
 
             </div>
             <!-- End Botones Derecha -->

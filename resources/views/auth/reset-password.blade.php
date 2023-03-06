@@ -1,9 +1,9 @@
 <!--Formulario para cambiar la contraseña-->
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Reset Password')
 
-@section('body')
+@section('content')
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
