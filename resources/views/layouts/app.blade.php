@@ -17,8 +17,10 @@
     </head>
     <body>
         @include('partials.navbar')
+        
+        @yield('content')
 
-        @yield('body')
+        @include('partials.footer')
 
         @stack('scripts')
     </body>

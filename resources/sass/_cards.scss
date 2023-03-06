@@ -2,3 +2,63 @@ a.custom-card,
 a.custom-card:hover {
   color: inherit;
 }
+
+.card {
+  background-color: white;
+  border: none;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+}
+
+.thumbnail-image {
+  border-radius: 1rem 1rem 0 0 !important
+}
+
+.product-price {
+  background-color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-weight: 600;
+}
+
+.first {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+}
+
+.product-name {
+  font-weight: 600;
+  width: 90%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.product-btn {
+  @extend .btn;
+  border-radius: 50%;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  border-width: 0.2rem;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.product-desc {
+  color: grey;
+  text-transform: capitalize;
+}
+
+.category-tag {
+  background-color: grey;
+  color: white;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  letter-spacing: 0.05rem;
+  border-radius: 0.3rem;
+}
