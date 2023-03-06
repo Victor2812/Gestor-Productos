@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\personas;
+use App\DataTables\PersonaDataTable;
 use Illuminate\Http\Request;
 
 class PersonasController extends Controller
@@ -10,9 +11,9 @@ class PersonasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PersonaDataTable $dataTable)
     {
-        //
+        return $dataTable->render('personas.index');
     }
 
     /**

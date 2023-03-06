@@ -17,7 +17,9 @@
     </head>
     <body>
         @include('partials.navbar')
-        
+
         @yield('body')
+
+        @stack('scripts')
     </body>
 </html>
