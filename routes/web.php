@@ -63,7 +63,7 @@ Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.
 
 // Productos por categoria
 
-Route::get('categoria/{id}', [ProductosController::class, 'show'])->name('producto.categoria');
+Route::get('categoria/{id}', [ProductosController::class, 'verCategoria'])->name('producto.categoria');
 
 // Confrimación creación pedido
 Route::get('confirmacion', [PedidosController::class, 'confirmacion'])->name('confirmacion');
@@ -98,5 +98,33 @@ Route::get('/most-sold', function() {
 });
 
 require __DIR__.'/auth.php';
+
+
+//editar persona
+Route::get('/personas/editar/{persona}', [PersonasController::class,'edit'])->name('personas.edit');
+Route::post('/personas/store/{persona}', [PersonasController::class,'store'])->name('personas.store');
+//ver persona
+Route::get('/personas/ver/{persona}', [PersonasController::class,'show'])->name('personas.show');
+//borrrar persona
+Route::get('/personas/destroy/{persona}', [PersonasController::class,'destroy'])->name('personas.destroy');
+
+
+//editar producto
+Route::get('/productos/editar/{producto}', [ProductosController::class,'edit'])->name('productos.edit');
+Route::post('/productos/store/{producto}', [ProductosController::class,'store'])->name('productos.store');
+//ver producto
+Route::get('/productos/ver/{producto}', [ProductosController::class,'show'])->name('productos.show');
+//borrrar producto
+Route::get('/productos/destroy/{producto}', [ProductosController::class,'destroy'])->name('productos.destroy');
+
+
+//editar categoria
+Route::get('/categorias/editar/{categoria}', [CategoriaController::class,'edit'])->name('categorias.edit');
+Route::post('/categorias/store/{categoria}', [CategoriaController::class,'store'])->name('categorias.store');
+//ver categoria
+Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
+//borrrar categoria
+Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
+
 
 

@@ -16,7 +16,7 @@ class ProductoDataTable extends DataTable
         return datatables()
         ->eloquent($query)
         ->addColumn('acciones',function($model){
-            return view('partials.acciones',compact('model'));
+            return view('partials.acciones_productos',compact('model'));
         });
     }
 

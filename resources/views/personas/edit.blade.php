@@ -1,59 +1,62 @@
 @extends('layouts.app')
 
-@section('title', 'Ver Usuario')
+@section('title', 'Editar Usuario')
 
 @section('content')
     <main>
-        <h1>Editar: {{ $persona->fullName }}</h1>
-
-        <form action="{{ route('personas.store') }}" method="post">
+        <form action="{{ route('personas.store', [$persona]) }}" method="post">
             @csrf
             <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="{{ $persona->name }}" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label for="name">Nombre</label>
+             <input type="text" class="form-control" id="name" name="name" value="{{$persona->name}}">
+             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- surName -->
+       <div>
+           <label for="surname">Surname</label>
+           <input id="surname" class="form-control" type="text" name="surname" value="{{ $persona->surname }}" />
+           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+       </div>
+
+        <!-- dni -->
         <div>
-            <x-input-label for="surname" :value="__('Surname')" />
-            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="{{ $persona->surname }}" required autofocus autocomplete="surname" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+           <label for="dni">DNI</label>
+           <input id="dni" class="form-control" type="text" name="dni" value="{{ $persona->dni }}" />
+           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+       </div>
 
-         <!-- dni -->
-         <div>
-            <x-input-label for="dni" :value="__('dni')" />
-            <x-text-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="{{ $persona->dni }}" required autofocus autocomplete="dni" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+        <!-- phone -->
+        <div>
+           <label for="phone">Telefono</label>
+           <input id="phone" class="form-control" type="text" name="phone" value="{{ $persona->phone }}" />
+           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+       </div>
 
-         <!-- phone -->
-         <div>
-            <x-input-label for="phone" :value="__('phone')" />
-            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="{{ $persona->phone }}" required autofocus autocomplete="phone" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+       <!-- email address -->
+       <div>
+           <label for="email">Email</label>
+           <input id="email" class="form-control" type="text" name="email" value="{{ $persona->email }}" />
+           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+       </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="{{ $persona->email }}" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+       <!-- password -->
+       <div>
+           <label for="password">Contraseña</label>
+           <input id="password" class="form-control" type="text" name="password" value="{{ $persona->password }}" />
+           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+       </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>  
+       <div>
+           <label for="role_id">Escoge el rol</label>
+            <select name="role_id" id="role_id" class="form-control">
+                @foreach($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                @endforeach
+            </select>
+       </div>
+     
         <div class="mt-4">
             <button type="submit" class="ml-4 dropdown-cart-btn btn-outline-primary btn-block">
                 Editar Usuario
