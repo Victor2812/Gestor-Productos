@@ -1,6 +1,6 @@
-@mixin after-guapo($color, $heigth) {
+@mixin after-guapo($color, $altura) {
     content: "";
-    height: $heigth;
+    height: $altura;
     width: 0;
     background-color: $color;
     margin: auto;
