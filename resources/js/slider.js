@@ -23,7 +23,7 @@ class slider extends HTMLElement {
         data.forEach(index => {
           console.log(index);
             index.forEach(data => {
-                console.log(data) // dat['name]
+                //console.log(data) // dat['name]
                 let template = document.createElement("template");
                 template.innerHTML = `
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
@@ -93,6 +93,7 @@ class slider extends HTMLElement {
                   font-size: 2rem;
                   color: #81005D;
                   border-color: #81005D;
+                  backgorund-color: white;
                 }
 
                 .product-btn:hover {
@@ -136,7 +137,7 @@ class slider extends HTMLElement {
                             <h5 class="product-name">${data['name']}</h5>
                             <p class="product-desc mb-1">${data['description']}</p>
                             <div class="d-flex justify-content-between align-items-center pt-1">
-                                <span class="category-tag">Carnes</span>
+                                <span class="category-tag">most sold</span>
                                 <button class="product-btn btn-outline-primary">+</button>
                             </div>
                         </div>

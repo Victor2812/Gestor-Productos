@@ -25,6 +25,8 @@
     </div>
     <!-- END MÁS VENDIDOS -->
 
+    <div id="app"></div>
+
 </main>
 
 
