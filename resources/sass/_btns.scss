@@ -1,0 +1,11 @@
+.login-btn {
+    @extend .btn;
+    width: 100%;
+    border-radius: 1.5rem;
+    padding: 0.4rem 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-width: 0.15rem;
+    letter-spacing: 0.1rem;
+    font-size: 1.1rem;
+}
