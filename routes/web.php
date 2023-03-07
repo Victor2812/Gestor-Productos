@@ -6,8 +6,9 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\CategoriaController;
-use App\Models\Categoria;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
+use App\Models\Productos;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,35 @@ Route::get('categoria/{id}', [ProductosController::class, 'show'])->name('produc
 
 // Confrimación creación pedido
 Route::get('confirmacion', [PedidosController::class, 'confirmacion'])->name('confirmacion');
+
+//Most sold products
+Route::get('/most-sold', function() {
+    $mostSoldItems = DB::table('pedido_productos')
+                        ->select('producto_id', DB::raw('SUM(cantidad) as total_quantity'))
+                        ->groupBy('Producto_id')
+                        ->orderByDesc('total_quantity')
+                        ->limit(5)
+                        ->get();
+
+    $productos = [];
+    foreach ($mostSoldItems as $mostSold) { //producto_id
+        $id = $mostSold->producto_id;
+        $prod = Productos::where('id', '=', $id)->get();
+        //dd($cat);
+        /*
+        array_push($productos, [
+            "id" => $prod->id,
+            "nombre" => $prod->name,
+            "cantidad" => $mostSold['total_quantity'],
+        ]);
+        */
+        array_push($productos, $prod);
+
+        //dd($productos);
+    }
+    //dd($mostSoldItems);
+    return new JsonResponse($productos); 
+});
 
 require __DIR__.'/auth.php';
 
