@@ -74,6 +74,19 @@
 
                                     </div>
 
+                                    <div class="row g-0 ps-5 py-1 mb-4 d-flex justify-content-center">
+                                    
+                                        <!-- Not Registered -->
+                                        <div class="col-6">
+                                            <div>
+                                                <a href="{{ route('register') }}">
+                                                    {{ __('Not registered?') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
                                     <!-- Login Button -->
                                     <div class="col-12 d-flex justify-content-center">
                                         <button class="login-btn btn-primary">
