@@ -1,7 +1,7 @@
 <!--Formulario de login-->
 @extends('layouts.app')
 
-@section('title', 'Registro')
+@section('title', 'Log In')
 
 @section('content')
 

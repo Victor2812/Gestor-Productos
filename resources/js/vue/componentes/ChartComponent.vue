@@ -1,9 +1,5 @@
 <template>
-    <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="renderChart()"
-  />
+    <Bar :char-options="charOptions" :data="charData" />
 </template>
 
 <script>
@@ -16,22 +12,27 @@
     export default {
         name: 'BarChart',
         components: { Bar },
-
-        data(labelsArray, datasetArray) {
-            console.log(labelsArray, datasetArray);
+        data() {
             return {
-                chartOptions: {
-                    responsive: true
+                charData: {
+                    labels: [],
+                    datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: []
+                    }]
+                },
+                charOptions: {
+                    response: true,
                 }
             }
         },
         mounted() {
             fetch("/stats").then(async (response) => {
                 const data = await response.json();
-
                 if (response.ok) {
                     console.log(data);
-
                     var length = data.length;
 
                     var labelsArray = [];
@@ -41,18 +42,20 @@
                         labelsArray.push(data[i] ? data[i].name : '');
                         datasetsArray.push(data[i] ? data[i].quantity : '');
                     }
-                    
-                    this.rederChart({
+                    console.log(labelsArray);
+                    console.log(datasetsArray);
+                    this.charData = {
                         labels: labelsArray,
-                        datasets: {
+                        datasets: [{
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
                             data: datasetsArray,
-                        },
-                    });
-
+                        }] 
+                    }
                 } else {
                     console.log("An error occurred while fetching stats");
                 }
-            });
-        }
+            })
+        },
     }
 </script>

@@ -29,10 +29,9 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/gorka', function () {
-    return view('pruebas_login_gorka');
-})->name('gorka-login');
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
