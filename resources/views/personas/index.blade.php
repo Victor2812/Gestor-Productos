@@ -14,9 +14,5 @@
 @endsection
 
 @push('scripts')
-   
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-        {{--<script src="{{ asset('js/common/delete.js') }}"></script>--}}
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}  
 @endpush
