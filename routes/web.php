@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\CategoriaController;
+use App\Models\Pedidos;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 use App\Models\Productos;
@@ -59,9 +60,9 @@ Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart'])
 //Pedidos
 Route::get("/pedido/calendario", [PedidosController::class, "calendario"])->name("pedido.calendario");
 Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.store");
+Route::get('/mis-pedidos', [PedidosController::class, "misPedidos"])->name("pedido.mis-pedidos");
 
 // Productos por categoria
-
 Route::get('categoria/{id}', [ProductosController::class, 'verCategoria'])->name('producto.categoria');
 
 // Confrimación creación pedido
@@ -131,9 +132,8 @@ Route::get('/productos/editar/{producto}', [ProductosController::class,'edit'])-
 Route::post('/productos/store/{producto}', [ProductosController::class,'store'])->name('productos.store');
 //ver producto
 Route::get('/productos/ver/{producto}', [ProductosController::class,'show'])->name('productos.show');
-//borrrar producto
+//borrar producto
 Route::get('/productos/destroy/{producto}', [ProductosController::class,'destroy'])->name('productos.destroy');
-
 
 //editar categoria
 Route::get('/categorias/editar/{categoria}', [CategoriaController::class,'edit'])->name('categorias.edit');

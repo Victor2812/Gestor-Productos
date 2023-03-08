@@ -24,10 +24,11 @@
                     <li class="nav-item">
                         <a class="nav-link  {{ Request::segment(1) === 'tienda' ? 'active' : '' }}" href="{{ route('shop') }}">Tienda</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shop') }}">Pedidos</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(1) == 'mis-pedidos' ? 'active' : '' }}" href="{{ route('pedido.mis-pedidos') }}">Pedidos</a>
+                        </li>
+                    @endauth
                     
                     <li class="nav-item">
                         

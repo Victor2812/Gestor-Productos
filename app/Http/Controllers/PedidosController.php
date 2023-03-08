@@ -7,6 +7,7 @@ use App\DataTables\PedidoDataTable;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PedidosController extends Controller
 {
@@ -97,6 +98,34 @@ class PedidosController extends Controller
     public function destroy(Pedidos $pedidos)
     {
         //
+    }
+
+    // Mis Pedidos
+    public function misPedidos(Request $request) {
+        $pedidosFiltrados = null;
+        $pedidos = Pedidos::where('persona_id', '=', Auth::user()->id)->get();
+    
+        $request->validate([
+            'search' => 'nullable|integer',
+        ]);
+
+        // Obtener filtros
+        $search = $request->query('search');
+
+        // Aplicar filtro
+        if ($search) {
+           foreach ($pedidos as $p => $data) {
+                if ($data['id'] == $search) {
+                    $pedidosFiltrados = $pedidos[$p];
+                }
+           }
+        }
+        
+        return view('pedidos.my_order', [
+            'pedidos' => $pedidos,
+            'pedido' => $pedidosFiltrados,
+            'old_search' => $search
+        ]);
     }
 
 
