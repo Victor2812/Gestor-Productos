@@ -16,10 +16,12 @@
             <div>
                 <label for="categoria_id">Escoge la categoria padre</label>
                     <select name="categoria_id" id="categoria_id" class="form-control">
-                            <option value=""></option>
-                        @foreach($categorias as $categoria)
-                            <option value="{{$categoria->id}}">{{$categoria->name}}</option>
-                        @endforeach
+                            <option value="">Sin categoria padre</option>
+                            @foreach($categorias as $categoria)
+                                <option value="{{ $categoria->id }}" {{ $categoria->id == $categoria_padre->id ? 'selected' : '' }}>
+                                    {{ $categoria->name }}
+                                </option>
+                            @endforeach
                     </select>
             </div>
      
