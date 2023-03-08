@@ -16,7 +16,7 @@ class PersonaDataTable extends DataTable
         return datatables()
         ->eloquent($query)
         ->addColumn('acciones',function($model){
-            return view('partials.acciones',compact('model'));
+            return view('partials.acciones_personas',compact('model'));
         });
     }
 
@@ -25,7 +25,7 @@ class PersonaDataTable extends DataTable
         return $model->newQuery();
     }
 
-    public function html(): HtmlBuilder
+    public function html()
     {
         return $this->builder()
                     ->setTableId('users-table')

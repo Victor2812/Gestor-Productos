@@ -40,33 +40,56 @@ class ProductosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Productos $producto)
     {
-        //
+        $producto->update([
+            'name' => $request->name,
+            'descripction' => $request->descripction,
+            'tipo_vender' => $request->tipo_vender,
+            'precio_base' => $request->precio_base,
+            'pedido_minimo' => $request->pedido_minimo,
+            'categoria_id' => $request->categoria_id
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Productos $producto)
     {
-        $productos = Productos::where('categoria_id', "=", $id)->get()->all();
-        $categoria = Categoria::where('id', "=", $id)->get()->first();
+        $categoria = Categoria::where('id', "=", $producto->categoria_id)->get()->first();
 
         return view('productos.show', [
-            'productos' => $productos,
-            'categoria' => $categoria,
+            'producto' => $producto,
+            'categoria' => $categoria
         ]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Productos $productos)
+    public function edit(Productos $producto)
     {
-        //
+        $categorias = Categoria::all();
+        return view('productos.edit', [
+            'producto' => $producto,
+            'categorias' => $categorias
+        ]);
     }
 
+
+    public function verCategoria($id) {
+        $productos = Productos::where('categoria_id', "=", $id)->get()->all();
+        $categoria = Categoria::where('id', "=", $id)->get()->first();
+
+        return view('productos.verCategoria', [
+            'productos' => $productos,
+            'categoria' => $categoria,
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -78,9 +101,10 @@ class ProductosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Productos $productos)
+    public function destroy(Productos $producto)
     {
-        //
+        Productos::destroy($producto->id);
+        return Redirect::route('home');
     }
 
 
