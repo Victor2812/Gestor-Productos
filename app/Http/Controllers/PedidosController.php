@@ -23,7 +23,7 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -32,7 +32,7 @@ class PedidosController extends Controller
     public function store(Request $request)
     {
         $productos = session()->get("cart");
-        
+
         $total = 0;
         foreach((array) session('cart') as $id => $details)
         {
@@ -50,9 +50,9 @@ class PedidosController extends Controller
 
         foreach($productos as $producto)
         {
-         $pedido->productos()->attach($producto['product_id'],['cantidad' => $producto['quantity'],'precio' => (float) $producto['precio'] * $producto['quantity'] ]);  
+         $pedido->productos()->attach($producto['product_id'],['cantidad' => $producto['quantity'],'precio' => (float) $producto['precio'] * $producto['quantity'] ]);
         }
-        
+
         DB::commit();
 
         $request->session()->forget('cart');
@@ -70,9 +70,9 @@ class PedidosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pedidos $pedidos)
+    public function show(Pedidos $pedido)
     {
-        //
+        return view('pedidos.show',compact('pedido'));
     }
 
     /**
