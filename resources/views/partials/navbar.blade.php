@@ -5,7 +5,7 @@
 
             <!-- Logo -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="../imgs/logo-escuela.png" alt="Escuela Hosteleria" height="40px">
+                <img src="../../imgs/logo-escuela.png" alt="Escuela Hosteleria" height="40px">
             </a>
             
             <!-- Boton Hamburguesa -->
