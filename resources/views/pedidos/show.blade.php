@@ -33,7 +33,7 @@
                         <label for="">Importe Total:</label>
                     </div>
                     <div class="col-sm-9">
-                        {{ $pedido->importe_total }}
+                        {{ $pedido->importe_total }} €
                     </div>
                 </div>
                 <div class="row">

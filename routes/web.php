@@ -85,7 +85,7 @@ Route::get('/most-sold', function() {
         //dd($productos);
     }
     //dd($mostSoldItems);
-    return new JsonResponse($productos); 
+    return new JsonResponse($productos);
 });
 
 //All products statistics
@@ -96,7 +96,7 @@ Route::get('/stats', function() {
                         ->orderByDesc('total_quantity')
                         ->get()
                         ->all();
-    
+
     $productos = [];
     foreach ($mostSoldItems as $mostSold) { //producto_id
         $total_quantity = $mostSold->total_quantity;
@@ -111,7 +111,7 @@ Route::get('/stats', function() {
         //dd($productos);
     }
     //dd($productos);
-    return new JsonResponse($productos); 
+    return new JsonResponse($productos);
 });
 
 require __DIR__.'/auth.php';
@@ -142,6 +142,8 @@ Route::post('/categorias/store/{categoria}', [CategoriaController::class,'store'
 Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
 //borrrar categoria
 Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
+//borrrar pedido
+Route::get('/pedidos/destroy/{pedido}', [PedidosController::class,'destroy'])->name('pedidos.destroy');
 
 
 

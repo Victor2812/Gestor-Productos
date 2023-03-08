@@ -7,6 +7,7 @@ use App\DataTables\PedidoDataTable;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PedidosController extends Controller
 {
@@ -78,25 +79,48 @@ class PedidosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pedidos $pedidos)
+    public function edit(Pedidos $pedido)
     {
-        //
+        return view('pedidos.edit',compact('pedido'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pedidos $pedidos)
+    public function update(Request $request, Pedidos $pedido)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'estado' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $pedido->update([
+            'estado' => $request->estado
+        ]);
+
+        return redirect()->route('pedidos.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pedidos $pedidos)
+    public function destroy(Pedidos $pedido)
     {
-        //
+        try{
+            $pedido->delete();
+
+            return redirect()->back();
+        }
+        catch(Exception $e)
+        {
+            dd($e->getMessage());
+            return redirect()->back();
+        }
     }
 
 
