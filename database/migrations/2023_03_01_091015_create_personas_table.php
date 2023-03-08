@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('phone', 16)->unique();
             $table->string('password', 100);
-            $table->foreignId('role_id')->constrained();
+            $table->foreignId('role_id')->constrained('roles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
