@@ -31,33 +31,29 @@ class PersonasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Personas $persona)
+    public function store(Request $request)
     {   
-        
         $request->validate([
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
-            "email" => 'required|string|max:255',
-            "password" => 'required|string|max:255',
-            "dni" => 'required|string|min:9|max:9',
+            "email" => 'required|string|max:255|unique:personas',
+            "password" => 'required|string|max:255|confirmed',
+            "dni" => 'required|string|min:9|max:9|unique:personas',
             "phone" => 'required',
-            'role_id' => 'required'
         ]);
 
-        
-
-        $persona->update([
+        $person = new Personas([
             'name' => $request['name'],
             'email' => $request['email'],
             'surname' => $request['surname'],
             'dni' => $request['dni'],
             'phone' => $request['phone'],
             'password' => Hash::make($request['password']),
-            'role_id' => $request['role_id']
+            'role_id' => $request->rol_id
         ]);
+        $person->save();
 
         return redirect()->route('home');
-
     }
 
     /**
@@ -87,27 +83,31 @@ class PersonasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Personas $personas)
-    {
+    public function update(Request $request, Personas $persona)
+    {           
         $request->validate([
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
-            "email" => 'required|string|max:255|unique:true',
-            "password" => 'required|string|max:255|confirmed',
-            "dni" => 'required|string|min:9|max:9|unique:true',
+            "email" => 'required|string|max:255',
+            "password" => 'required|string|max:255',
+            "dni" => 'required|string|min:9|max:9',
             "phone" => 'required',
+            'role_id' => 'required'
         ]);
 
-        $person = new Personas([
+        
+
+        $persona->update([
             'name' => $request['name'],
             'email' => $request['email'],
             'surname' => $request['surname'],
             'dni' => $request['dni'],
             'phone' => $request['phone'],
             'password' => Hash::make($request['password']),
-            'role_id' => 2
+            'role_id' => $request['role_id']
         ]);
-        $person->save();
+
+        return redirect()->route('home');
     }
 
     /**

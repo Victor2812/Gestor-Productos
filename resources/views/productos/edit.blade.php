@@ -4,7 +4,7 @@
 
 @section('content')
     <main>
-        <form action="{{ route('productos.store', [$producto]) }}" method="post">
+        <form action="{{ route('productos.update', [$producto]) }}" method="post">
             @csrf
             <!-- Name -->
         <div>
@@ -45,9 +45,11 @@
        <div>
            <label for="categoria_id">Escoge la categoria</label>
             <select name="categoria_id" id="categoria_id" class="form-control">
-                @foreach($categorias as $categoria)
-                    <option value="{{$categoria->id}}">{{$categoria->name}}</option>
-                @endforeach
+            @foreach($categorias as $categoria)
+                <option value="{{ $categoria->id }}" {{ $categoria->id == old('categoria_id', $producto->categoria_id) ? 'selected' : '' }}>
+                    {{ $categoria->name }}
+                </option>
+            @endforeach
             </select>
        </div>
        

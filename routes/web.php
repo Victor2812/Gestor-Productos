@@ -120,30 +120,31 @@ require __DIR__.'/auth.php';
 
 //editar persona
 Route::get('/personas/editar/{persona}', [PersonasController::class,'edit'])->name('personas.edit');
-Route::post('/personas/store/{persona}', [PersonasController::class,'store'])->name('personas.store');
+Route::post('/personas/update/{persona}', [PersonasController::class,'update'])->name('personas.update');
 //ver persona
 Route::get('/personas/ver/{persona}', [PersonasController::class,'show'])->name('personas.show');
 //borrrar persona
 Route::get('/personas/destroy/{persona}', [PersonasController::class,'destroy'])->name('personas.destroy');
-
+// crear persona
+Route::post('/personas/store', [PersonasController::class,'store'])->name('personas.store');
 
 //editar producto
 Route::get('/productos/editar/{producto}', [ProductosController::class,'edit'])->name('productos.edit');
-Route::post('/productos/store/{producto}', [ProductosController::class,'store'])->name('productos.store');
+Route::post('/productos/update/{producto}', [ProductosController::class,'update'])->name('productos.update');
 //ver producto
 Route::get('/productos/ver/{producto}', [ProductosController::class,'show'])->name('productos.show');
 //borrar producto
 Route::get('/productos/destroy/{producto}', [ProductosController::class,'destroy'])->name('productos.destroy');
+// crear producto
+Route::post('/productos/store', [ProductosController::class,'store'])->name('productos.store');
 
 //editar categoria
 Route::get('/categorias/editar/{categoria}', [CategoriaController::class,'edit'])->name('categorias.edit');
-Route::post('/categorias/store/{categoria}', [CategoriaController::class,'store'])->name('categorias.store');
+Route::post('/categorias/update/{categoria}', [CategoriaController::class,'update'])->name('categorias.update');
 //ver categoria
 Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
 //borrrar categoria
 Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
-//borrrar pedido
-Route::get('/pedidos/destroy/{pedido}', [PedidosController::class,'destroy'])->name('pedidos.destroy');
 
 
 

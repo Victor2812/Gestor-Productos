@@ -6,7 +6,7 @@
     <main>
         <h1>Nuevo Usuario</h1>
 
-        <form method="POST" action="{{ route('register') }}" class="py-5">
+        <form method="POST" action="{{ route('personas.store') }}" class="py-5">
         @csrf
         
         <!-- Name -->
@@ -66,6 +66,13 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+
+        <!-- Rol -->
+        <label for="rol_id">Escoge la categoria</label>
+        <select name="rol_id" id="rol_id" class="form-control">
+                <option value="1">Administrador</option>
+                <option value="2">Cliente</option>
+        </select>
 
         <div class="mt-4">
             <button type="submit" class="ml-4 dropdown-cart-btn btn-outline-primary btn-block">
