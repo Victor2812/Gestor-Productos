@@ -18,11 +18,11 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link {{ Request::is('/') ? 'active':'' }}" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shop') }}">Tienda</a>
+                        <a class="nav-link  {{ Request::segment(1) === 'tienda' ? 'active' : '' }}" href="{{ route('shop') }}">Tienda</a>
                     </li>
 
                     <li class="nav-item">
@@ -42,7 +42,7 @@
                 <!-- Carrito -->
                 <div class="dropstart px-3">
                     <!-- CART ICON DROPDOWN MENU -->
-                    <button type="button" class="btn btn-info b-cart" data-count="{{ count((array) session('cart')) }}" data-bs-toggle="dropdown">
+                    <button type="button" class="btn btn-outline-primary b-cart" data-count="{{ count((array) session('cart')) }}" data-bs-toggle="dropdown">
                         <i class="bi bi-cart" aria-hidden="true"></i>
                     </button>
                     <!-- Dropdown Cart Menu -->
@@ -86,25 +86,25 @@
                 </div>
                 <!-- End Carrito -->
 
+                <!-- Login -->
                 <div class="d-flex flex-row align-items-center justify-content-center header-guapo">
                     @auth
-                        <a href="">
-                            {{ auth()->user()->fullName()}}
-                        </a>
+                        <p class="mb-0" style="color : grey">{{ auth()->user()->fullName()}}</p>
+                        <div class="divider d-none d-lg-inline"></div>
                     @endauth
 
-                    <div class="divider d-none d-lg-inline"></div>
+                    
 
-                    <!-- Login -->
                     <div>
                         @auth
-                            <a href="{{ route('logout') }}">Cerrar sesión</a>
+                            <a class="session-link" href="{{ route('logout') }}">Cerrar sesión</a>
                         @else 
-                            <a href="{{ route('login') }}">Iniciar sesión</a>
+                            <a class="session-link" href="{{ route('login') }}">Iniciar sesión</a>
                         @endauth
                     </div>
-                    <!-- End Login -->
+                    
                 </div>
+                <!-- End Login -->
 
             </div>
             <!-- End Botones Derecha -->

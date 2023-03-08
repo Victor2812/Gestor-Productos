@@ -3,7 +3,5 @@
 @section('title', 'Home')
 
 @section('content')
-    <h1>HOLA</h1>
-    <a href="">Carrito</a>
-    <a href="{{ route('login') }}">Iniciar sesion</a>
+    <h1>ADMIN</h1>
 @endsection

@@ -20,10 +20,12 @@
 
     <!-- MÁS VENDIDOS -->
     <div class="container mt-5">
-        <h2 class="h2">Más vendidos</h2>
+        <h2 class="h2">Más vendidos  </h2>
         <slider-component></slider-component>
     </div>
     <!-- END MÁS VENDIDOS -->
+
+    <!-- <div id="app"></div> -->
 
 </main>
 

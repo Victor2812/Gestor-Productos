@@ -29,10 +29,9 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/gorka', function () {
-    return view('pruebas_login_gorka');
-})->name('gorka-login');
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -81,19 +80,37 @@ Route::get('/most-sold', function() {
     foreach ($mostSoldItems as $mostSold) { //producto_id
         $id = $mostSold->producto_id;
         $prod = Productos::where('id', '=', $id)->get();
-        //dd($cat);
-        /*
-        array_push($productos, [
-            "id" => $prod->id,
-            "nombre" => $prod->name,
-            "cantidad" => $mostSold['total_quantity'],
-        ]);
-        */
         array_push($productos, $prod);
 
         //dd($productos);
     }
     //dd($mostSoldItems);
+    return new JsonResponse($productos); 
+});
+
+//All products statistics
+Route::get('/stats', function() {
+    $mostSoldItems = DB::table('pedido_productos')
+                        ->select('producto_id', DB::raw('SUM(cantidad) as total_quantity'))
+                        ->groupBy('Producto_id')
+                        ->orderByDesc('total_quantity')
+                        ->get()
+                        ->all();
+    
+    $productos = [];
+    foreach ($mostSoldItems as $mostSold) { //producto_id
+        $total_quantity = $mostSold->total_quantity;
+        $id = $mostSold->producto_id;
+        $prod = Productos::where('id', '=', $id)->get()->first();
+        $name = $prod['name'];
+        array_push($productos, [
+            'name' => $name,
+            'quantity' => $total_quantity,
+        ]);
+
+        //dd($productos);
+    }
+    //dd($productos);
     return new JsonResponse($productos); 
 });
 

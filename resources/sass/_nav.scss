@@ -1,18 +1,55 @@
+@import "variables";
 @import "mixins";
 
-// subrayado en los nav-items
-.nav-item::after {
-    @include after-guapo(white, 2px)
+/* nav links */
+.nav-link {
+    font-size: 1rem;
+} 
+.nav-link::after {
+    @include after-guapo($primary, 3px);
 }
 
-.nav-item:hover::after {
+.nav-link:hover::after {
     @include after-hover-guapo;
 }
 
-//divider
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+    color: $primary;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: "";
+    height: 3px;
+    width: 100%;
+    background-color: $primary;
+    margin: auto;
+    display: block;
+}
+
+
+/* session links */
+.session-link {
+    text-decoration:none;
+    color: grey;
+}
+
+.session-link:hover {
+    color: grey;
+}
+
+.session-link::after {
+    @include after-guapo(grey, 1px);
+}
+
+.session-link:hover::after {
+    @include after-hover-guapo;
+}
+
+/* session links */
 .divider {
     width: 0;
-    border-right: 1px solid $primary;
+    border-right: 1px solid grey;
     height: 1rem;
     margin: auto 1rem;
 }
