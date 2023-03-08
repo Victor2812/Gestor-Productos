@@ -34,24 +34,43 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('productos.create', [
+            'categorias' => $categorias
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Productos $producto)
+    public function store(Request $request)
     {
-        $producto->update([
-            'name' => $request->name,
-            'descripction' => $request->descripction,
-            'tipo_vender' => $request->tipo_vender,
-            'precio_base' => $request->precio_base,
-            'pedido_minimo' => $request->pedido_minimo,
-            'categoria_id' => $request->categoria_id
+        
+        $validate = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'alt' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        // Guardar la imagen en la carpeta "imgs" en la carpeta "public"
+        if ($request->hasFile('alt')) {
+            $file = $request->file('alt');
+            $nombre = $file->getClientOriginalName();
+            $ruta = public_path('/imgs');
+            $file->move($ruta, $nombre);
+        }
 
-        return redirect()->route('home');
+        $product = new Productos;
+        $product->name = $request->name;//$validate['name'];
+        $product->description = $request->description;//$validate['description'];
+        $product->tipo_vender = $request->tipo_vender;
+        $product->precio_base = $request->precio_base;
+        $product->pedido_minimo = $request->pedido_minimo;
+        $product->alt = "/imgs/" . $nombre;
+        $product->categoria_id = $request->categoria_id;
+        $product->save();
+
+        return redirect()->route('home')
+        ->with('success','Producto creado exitosamente.');
     }
 
     /**
@@ -93,9 +112,18 @@ class ProductosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, Productos $producto)
     {
-        //
+        $producto->update([
+            'name' => $request->name,
+            'descripction' => $request->descripction,
+            'tipo_vender' => $request->tipo_vender,
+            'precio_base' => $request->precio_base,
+            'pedido_minimo' => $request->pedido_minimo,
+            'categoria_id' => $request->categoria_id
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**

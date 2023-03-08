@@ -4,7 +4,7 @@
 
 @section('content')
     <main>
-        <form action="{{ route('personas.store', [$persona]) }}" method="post">
+        <form action="{{ route('personas.update', [$persona]) }}" method="post">
             @csrf
             <!-- Name -->
         <div>

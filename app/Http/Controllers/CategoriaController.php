@@ -22,20 +22,25 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('categorias.create', [
+            'categorias' => $categorias
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Categoria $categoria)
+    public function store(Request $request)
     {
-        $categoria->update([
-            'name' => $request->name,
-            'parent_id' => $request->categoria_id
-        ]);
+        //validar 
 
-        return redirect()->route('home');
+        $categoria = new Categoria;
+        $categoria->name = $request->name;//$validate['name'];
+        $categoria->parent_id = $request->categoria_id;//$validate['name'];
+        $categoria->save();
+        return redirect()->route('home')
+        ->with('success','Categoria creada exitosamente.');
     }
 
     /**
@@ -71,7 +76,12 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $categoria->update([
+            'name' => $request->name,
+            'parent_id' => $request->categoria_id
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
