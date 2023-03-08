@@ -16,7 +16,7 @@ class PedidoDataTable extends DataTable
         return datatables()
         ->eloquent($query)
         ->addColumn('acciones',function($model){
-            return view('partials.acciones',compact('model'));
+            return view('partials.acciones_pedidos',compact('model'));
         });
     }
 

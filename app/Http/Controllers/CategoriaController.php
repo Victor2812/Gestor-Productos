@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\DataTables\CategoriaDataTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoriaController extends Controller
 {
@@ -27,9 +28,14 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Categoria $categoria)
     {
-        //
+        $categoria->update([
+            'name' => $request->name,
+            'parent_id' => $request->categoria_id
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -37,7 +43,12 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        $categoria_padre = Categoria::where('id', "=", $categoria->parent_id)->get()->first();
+        
+        return view('categorias.show', [
+            'categoria' => $categoria,
+            'categoria_padre' => $categoria_padre
+        ]);
     }
 
     /**
@@ -45,7 +56,14 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        $categoria_padre = Categoria::where('id', "=", $categoria->parent_id)->get()->first();
+        $categorias = Categoria::all();
+
+        return view('categorias.edit', [
+            'categoria' => $categoria,
+            'categoria_padre' => $categoria_padre,
+            'categorias' => $categorias
+        ]);
     }
 
     /**
@@ -61,6 +79,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        Categoria::destroy($categoria->id);
+        return Redirect::route('home');
     }
 }
