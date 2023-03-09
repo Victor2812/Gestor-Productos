@@ -15,7 +15,7 @@
                 <ul class="col-lg-8">
                   <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
-                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h1 class="fw-bold mb-0 text-black">Carrito</h1>
                       <h6 class="mb-0 text-muted">{{ count((array) session('cart')) }} items</h6>
                     </div>
 
@@ -35,23 +35,23 @@
                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                <h6 class="text-muted">{{ $details['name'] }}</h6>
+                                <h6 class="dropdown-cart-name">{{ $details['name'] }}</h6>
                                 <h6 class="text-black mb-0">{{ $details['descrition'] }}</h6>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2 text-dark mx-1" name="resta">
-                                <i class="bi bi-dash" style="color:black"></i>
+                                <button class="cont-btn btn-primary" name="resta">
+                                  <i class="bi bi-dash"></i>
                                 </button>
         
                                 <input id="{{ $item }}" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number"
-                                class="form-control form-control-sm update-cart" style="width: 3rem"/>
+                                class="form-control form-control-sm cart-input text-center" />
         
-                                <button class="btn btn-link px-2" name="suma">
-                                <i class="bi bi-plus" style="color:black"></i>
+                                <button class="cont-btn btn-outline-primary" name="suma">
+                                  <i class="bi bi-plus"></i>
                                 </button>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h6 class="mb-0">€ {{ $details['precio'] * $details['quantity'] }}</h6>
+                                <h6 class="dropdown-cart-price text-primary">{{ $details['precio'] * $details['quantity'] }}€</h6>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end remove-from-cart">
                               <i class="bi bi-trash3" style="color: black"></i>
@@ -72,7 +72,7 @@
                 <!-- SUMMMARY -->
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
-                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
                     <hr class="my-4">
   
                     <div class="d-flex justify-content-between mb-4">
