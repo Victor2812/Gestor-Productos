@@ -50,8 +50,8 @@ class ProductosController extends Controller
             'pedido_minimo' => $request->pedido_minimo,
             'categoria_id' => $request->categoria_id
         ]);
-
-        return redirect()->route('home');
+        flash('Producto creado','success');
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductosController extends Controller
             'producto' => $producto,
             'categoria' => $categoria
         ]);
-        
+
     }
 
     /**
@@ -104,7 +104,8 @@ class ProductosController extends Controller
     public function destroy(Productos $producto)
     {
         Productos::destroy($producto->id);
-        return Redirect::route('home');
+        flash('Producto eliminado','success');
+        return Redirect::route('productos.index');
     }
 
 

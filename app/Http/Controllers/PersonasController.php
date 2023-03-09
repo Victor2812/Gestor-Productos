@@ -32,8 +32,8 @@ class PersonasController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request, Personas $persona)
-    {   
-        
+    {
+
         $request->validate([
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
@@ -44,7 +44,7 @@ class PersonasController extends Controller
             'role_id' => 'required'
         ]);
 
-        
+
 
         $persona->update([
             'name' => $request['name'],
@@ -56,7 +56,8 @@ class PersonasController extends Controller
             'role_id' => $request['role_id']
         ]);
 
-        return redirect()->route('home');
+        flash('Cliente creado','success');
+        return redirect()->route('personas.index');
 
     }
 
@@ -108,6 +109,9 @@ class PersonasController extends Controller
             'role_id' => 2
         ]);
         $person->save();
+        flash('Cliente actualizado','success');
+        return redirect()->route('personas.index');
+
     }
 
     /**
@@ -116,7 +120,9 @@ class PersonasController extends Controller
     public function destroy(Personas $persona)
     {
         Personas::destroy($persona->id);
-        return Redirect::route('home');
+
+        flash('Cliente eliminado','success');
+        return Redirect::route('personas.index');
     }
 
     public function logout(Request $request) {
