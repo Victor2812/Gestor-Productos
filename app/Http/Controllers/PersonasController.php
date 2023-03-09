@@ -92,13 +92,16 @@ class PersonasController extends Controller
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
             "email" => 'required|string|max:255',
-            "password" => 'required|string|max:255',
             "dni" => 'required|string|min:9|max:9',
             "phone" => 'required',
             'role_id' => 'required'
         ]);
 
-        
+        if ($request->password == '') {
+            $pass = $persona->password;
+        } else {
+            $pass = Hash::make($request->password);
+        }
 
         $persona->update([
             'name' => $request['name'],
@@ -106,7 +109,7 @@ class PersonasController extends Controller
             'surname' => $request['surname'],
             'dni' => $request['dni'],
             'phone' => $request['phone'],
-            'password' => Hash::make($request['password']),
+            'password' => $pass,
             'role_id' => $request['role_id']
         ]);
         $persona->save();

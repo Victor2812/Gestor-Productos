@@ -49,7 +49,7 @@
                                 </div>
 
                                 <!-- DNI -->
-                                <div class="col-12 col-sm-7 mb-2 pe-0 pe-sm-2">
+                                <div class="col-12 col-sm-4 mb-2 pe-0 pe-sm-2">
                                     <label class="visually-hidden" for="dni" :value="__('dni')">DNI</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
@@ -59,9 +59,20 @@
                                         <x-input-error :messages="$errors->get('dni')" class="mt-2" />
                                     </div>
                                 </div>
-
+                                
+                                <!-- Rol -->
+                                <div class="col-12 col-sm-4 mb-2 pe-0 pe-sm-2">
+                                    <label class="visually-hidden" for="rol_id">Escoge la categoria</label>
+                                    <div class="input-group">
+                                        <select name="rol_id" id="rol_id" class="form-control">
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Cliente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                                 <!-- Telefono -->
-                                <div class="col-12 col-sm-5 mb-2 ps-0 ps-sm-2">
+                                <div class="col-12 col-sm-4 mb-2 ps-0 ps-sm-2">
                                     <label class="visually-hidden" for="phone" :value="__('phone')">Teléfono</label>
                                     <div class="input-group">
                                         <div class="input-group-text">

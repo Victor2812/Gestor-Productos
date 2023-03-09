@@ -44,7 +44,7 @@
        <!-- password -->
        <div>
            <label for="password">Contraseña</label>
-           <input id="password" class="form-control" type="text" name="password" value="{{ $persona->password }}" />
+           <input id="password" class="form-control" type="text" name="password" />
            <x-input-error :messages="$errors->get('name')" class="mt-2" />
        </div>
 
