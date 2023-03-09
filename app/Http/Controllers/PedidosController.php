@@ -58,13 +58,13 @@ class PedidosController extends Controller
         DB::commit();
 
         $request->session()->forget('cart');
-
+        flash('Pedido Realizado','success');
         return redirect()->route('confirmacion');
     }
     catch(\Exception $e)
     {
         DB::rollBack();
-        dd($e->getMessage());
+        flash('Error realizar el pedido','danger');
     }
 
     }
@@ -103,7 +103,7 @@ class PedidosController extends Controller
         $pedido->update([
             'estado' => $request->estado
         ]);
-
+        flash('Estado del pedido actaulizado','success');
         return redirect()->route('pedidos.index');
     }
 
@@ -114,12 +114,12 @@ class PedidosController extends Controller
     {
         try{
             $pedido->delete();
-
+            flash('Pedido Borrado','success');
             return redirect()->back();
         }
         catch(Exception $e)
         {
-            dd($e->getMessage());
+            flash('Error: al borrar un pedido','danger');
             return redirect()->back();
         }
     }
