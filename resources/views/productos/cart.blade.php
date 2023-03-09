@@ -44,7 +44,7 @@
                                 </button>
         
                                 <input id="{{ $item }}" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number"
-                                class="form-control form-control-sm cart-input text-center" />
+                                class="form-control form-control-sm cart-input text-center update-cart" />
         
                                 <button class="cont-btn btn-outline-primary" name="suma">
                                   <i class="bi bi-plus"></i>
