@@ -138,7 +138,7 @@ class slider extends HTMLElement {
                             <p class="product-desc mb-1">${data['description']}</p>
                             <div class="d-flex justify-content-between align-items-center pt-1">
                                 <span class="category-tag">most sold</span>
-                                <button class="product-btn btn-outline-primary">+</button>
+                                <a href="add-to-card/${data['id']}"><button class="product-btn btn-outline-primary">+</button></a>
                             </div>
                         </div>
                     </div>

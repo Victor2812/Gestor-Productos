@@ -104,7 +104,7 @@
 
                     <form action="{{route('pedido.store')}}" method="POST">
                       @csrf
-                      <input type="date" name="fecha" id="fecha" required/>
+                      <input type="date" name="fecha" id="date1" min="{{ now()->addDays(3)->toDateString() }}" required/>
                       
                     <hr class="my-4">
   
