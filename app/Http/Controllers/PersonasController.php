@@ -31,8 +31,9 @@ class PersonasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request, Personas $persona)
+    {
+
         $request->validate([
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
@@ -53,7 +54,9 @@ class PersonasController extends Controller
         ]);
         $person->save();
 
-        return redirect()->route('home');
+        flash('Usuario creado','success');
+        return redirect()->route('personas.index');
+
     }
 
     /**
@@ -106,8 +109,11 @@ class PersonasController extends Controller
             'password' => Hash::make($request['password']),
             'role_id' => $request['role_id']
         ]);
+        $persona->save();
+        
+        flash('Usuario actualizado','success');
+        return redirect()->route('personas.index');
 
-        return redirect()->route('home');
     }
 
     /**
@@ -116,7 +122,9 @@ class PersonasController extends Controller
     public function destroy(Personas $persona)
     {
         Personas::destroy($persona->id);
-        return Redirect::route('home');
+
+        flash('Cliente eliminado','success');
+        return Redirect::route('personas.index');
     }
 
     public function logout(Request $request) {

@@ -51,6 +51,7 @@ class ProductosController extends Controller
             'description' => 'required',
             'alt' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
         // Guardar la imagen en la carpeta "imgs" en la carpeta "public"
         if ($request->hasFile('alt')) {
             $file = $request->file('alt');
@@ -69,8 +70,9 @@ class ProductosController extends Controller
         $product->categoria_id = $request->categoria_id;
         $product->save();
 
-        return redirect()->route('home')
-        ->with('success','Producto creado exitosamente.');
+        flash('Producto creado','success');
+        return redirect()->route('productos.index');
+
     }
 
     /**
@@ -84,7 +86,7 @@ class ProductosController extends Controller
             'producto' => $producto,
             'categoria' => $categoria
         ]);
-        
+
     }
 
     /**
@@ -123,7 +125,8 @@ class ProductosController extends Controller
             'categoria_id' => $request->categoria_id
         ]);
 
-        return redirect()->route('home');
+        flash('Producto actualizado','success');
+        return Redirect::route('productos.index');
     }
 
     /**
@@ -132,7 +135,8 @@ class ProductosController extends Controller
     public function destroy(Productos $producto)
     {
         Productos::destroy($producto->id);
-        return Redirect::route('home');
+        flash('Producto eliminado','success');
+        return Redirect::route('productos.index');
     }
 
 

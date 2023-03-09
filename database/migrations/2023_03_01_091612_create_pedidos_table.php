@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha_recogida');
             $table->date('fecha_reserva')->useCurrent();
             $table->double('importe_total', 8, 2);
-            $table->foreignId('persona_id')->constrained('personas');
+            $table->foreignId('persona_id')->constrained('personas')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

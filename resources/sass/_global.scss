@@ -40,7 +40,9 @@ h1, h2 {
     font-size: 1rem;
 }
 
-
+.page-item.active .page-link {
+    background-color: $primary;
+}
 
 
 

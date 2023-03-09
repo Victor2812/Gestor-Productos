@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\CategoriaController;
+use App\Models\Pedidos;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 use App\Models\Productos;
@@ -59,9 +60,9 @@ Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart'])
 //Pedidos
 Route::get("/pedido/calendario", [PedidosController::class, "calendario"])->name("pedido.calendario");
 Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.store");
+Route::get('/mis-pedidos', [PedidosController::class, "misPedidos"])->name("pedido.mis-pedidos");
 
 // Productos por categoria
-
 Route::get('categoria/{id}', [ProductosController::class, 'verCategoria'])->name('producto.categoria');
 
 // Confrimación creación pedido
@@ -85,7 +86,7 @@ Route::get('/most-sold', function() {
         //dd($productos);
     }
     //dd($mostSoldItems);
-    return new JsonResponse($productos); 
+    return new JsonResponse($productos);
 });
 
 //All products statistics
@@ -96,7 +97,7 @@ Route::get('/stats', function() {
                         ->orderByDesc('total_quantity')
                         ->get()
                         ->all();
-    
+
     $productos = [];
     foreach ($mostSoldItems as $mostSold) { //producto_id
         $total_quantity = $mostSold->total_quantity;
@@ -111,7 +112,7 @@ Route::get('/stats', function() {
         //dd($productos);
     }
     //dd($productos);
-    return new JsonResponse($productos); 
+    return new JsonResponse($productos);
 });
 
 require __DIR__.'/auth.php';
@@ -132,7 +133,7 @@ Route::get('/productos/editar/{producto}', [ProductosController::class,'edit'])-
 Route::post('/productos/update/{producto}', [ProductosController::class,'update'])->name('productos.update');
 //ver producto
 Route::get('/productos/ver/{producto}', [ProductosController::class,'show'])->name('productos.show');
-//borrrar producto
+//borrar producto
 Route::get('/productos/destroy/{producto}', [ProductosController::class,'destroy'])->name('productos.destroy');
 // crear producto
 Route::post('/productos/store', [ProductosController::class,'store'])->name('productos.store');
@@ -144,8 +145,6 @@ Route::post('/categorias/update/{categoria}', [CategoriaController::class,'updat
 Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
 //borrrar categoria
 Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
-//crear categoria
-Route::post('/categorias/store', [CategoriaController::class,'store'])->name('categorias.store');
 
 
 

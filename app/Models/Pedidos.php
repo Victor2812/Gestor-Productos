@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Personas;
 use App\Models\Productos;
-
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

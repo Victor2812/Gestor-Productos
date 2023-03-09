@@ -33,14 +33,17 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+
         //validar 
 
         $categoria = new Categoria;
         $categoria->name = $request->name;//$validate['name'];
         $categoria->parent_id = $request->categoria_id;//$validate['name'];
         $categoria->save();
-        return redirect()->route('home')
-        ->with('success','Categoria creada exitosamente.');
+
+        flash('Categoria creada','success');
+        return redirect()->route('categorias.index');
+
     }
 
     /**
@@ -49,7 +52,7 @@ class CategoriaController extends Controller
     public function show(Categoria $categoria)
     {
         $categoria_padre = Categoria::where('id', "=", $categoria->parent_id)->get()->first();
-        
+
         return view('categorias.show', [
             'categoria' => $categoria,
             'categoria_padre' => $categoria_padre
@@ -81,7 +84,8 @@ class CategoriaController extends Controller
             'parent_id' => $request->categoria_id
         ]);
 
-        return redirect()->route('home');
+        flash('Categoria actualizada','success');
+        return Redirect::route('categorias.index');
     }
 
     /**
@@ -90,6 +94,7 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         Categoria::destroy($categoria->id);
-        return Redirect::route('home');
+        flash('Categoria borrado','success');
+        return Redirect::route('categorias.index');
     }
 }
