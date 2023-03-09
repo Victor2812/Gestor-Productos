@@ -10,6 +10,6 @@ picker.addEventListener('input', function(e){
   if([6,0].includes(day)){
     e.preventDefault(); // Prevenir que se recoja datos erroneos
     this.value = '';
-    alert('Weekends not allowed');
+    alert('Los fines de semanas no están disponibles');
   }
 });
