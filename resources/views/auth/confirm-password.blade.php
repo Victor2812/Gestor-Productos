@@ -1,27 +1,65 @@
+@extends('layouts.app')
 
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@section('title', 'Recuperar contraseña')
+
+@section('content')
+
+<main>
+
+    <div class="container">
+        <div class="py-5 h-100">
+           
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <!-- Formulario -->
+                    <div class="row g-0 d-flex justify-content-center">
+                        <div class="col-10 col-sm-4">
+
+                            <!-- Titulo -->
+                            <h1 class="fw-bold mb-0 pt-5 text-center">Recuperar Contraseña</h1>
+                        
+                            <form method="POST" action="{{ route('password.confirm') }}" class="py-5">
+                                @csrf
+                                <div class="row g-0">
+
+                                    <div class="col-12 mb-5 text-center">
+                                        {{ __('Esta es un área segura de la aplicación. Por favor, confirme su contraseña antes de continuar.') }}
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="col-12">
+                                        <label class="visually-hidden" for="password" :value="__('Password')">password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-lock"></i>
+                                            </div>
+                                            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required autocomplete="current-password" />
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <button class="login-btn btn-primary">
+                                            {{ __('Confirmar') }}
+                                        </button>
+                                    </div>
+
+                                    <!-- Session Status -->
+                                    <div class="col-12 mt-5 text-primary">    
+                                        <x-auth-session-status class="mb-4" :status="session('status')" />
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</main>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
+@endsection
 

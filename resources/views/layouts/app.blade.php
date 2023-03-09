@@ -16,12 +16,38 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
-        @include('partials.navbar')
+
         
-        @yield('content')
+        @if (auth()->guest() || auth()->user()->role_id==2)
+            
+            <!-- Cliente e invitado -->
+            @include('partials.navbar')
+            @yield('content')
+            @include('partials.footer')
 
-        @include('partials.footer')
+        @else
 
+            <!-- Admin -->
+            <div class="wrapper">
+
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary">
+                    @include('partials.sidebar')
+                </div>
+
+                <div class="content-wrapper d-flex flex-column">
+                
+                    @include('partials.header')
+                    
+                    <div class="content p-4">
+                        @yield('content')
+                    </div>
+                   
+                    @include('partials.footer')
+
+                </div>
+            </div>
+        @endif
+        
         @stack('scripts')
     </body>
 </html>

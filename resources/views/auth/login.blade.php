@@ -5,8 +5,7 @@
 
 @section('content')
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<main>
 
     <div class="container">
         <div class="py-5 h-100">
@@ -52,46 +51,47 @@
                                     <div class="row g-0 px-3 py-1 mb-4 d-flex justify-content-between">
                                        
                                         <!-- Forgot Pass -->
-                                        <div class="col-6">
+                                        <div class="col-8">
                                             <div>
                                                 @if (Route::has('password.request'))
                                                     <a href="{{ route('password.request') }}">
-                                                        {{ __('Forgot your password?') }}
+                                                        {{ __('¿Has olvidado tu contraseña?') }}
                                                     </a>
                                                 @endif
                                             </div>
                                         </div>
 
                                         <!-- Remember Me -->
-                                        <div class="col-6 text-end">
+                                        <div class="col-4 text-end">
                                             <div class="form-check">
                                                 <label for="remember_me" class="form-check-label">
                                                     <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
-                                                    <span>{{ __('Remember me') }}</span>
+                                                    <span>{{ __('Recordar') }}</span>
                                                 </label>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <div class="row g-0 ps-5 py-1 mb-4 d-flex justify-content-center">
-                                    
-                                        <!-- Not Registered -->
-                                        <div class="col-6">
-                                            <div>
-                                                <a href="{{ route('register') }}">
-                                                    {{ __('Not registered?') }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
                                     <!-- Login Button -->
-                                    <div class="col-12 d-flex justify-content-center">
+                                    <div class="col-12 mb-2 d-flex justify-content-center">
                                         <button class="login-btn btn-primary">
                                             {{ __('Log in') }}
                                         </button>
+                                    </div>
+
+                                    <!-- No registrado -->
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div>
+                                            <a href="{{ route('register') }}">
+                                                {{ __('¿No estas registrado?') }}
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Session Status -->
+                                    <div class="col-12 mt-5 text-primary">    
+                                        <x-auth-session-status class="mb-4" :status="session('status')" />
                                     </div>
 
                                 </div>
@@ -103,7 +103,7 @@
             </div>    
         </div>
     </div>
-
+</main>
     
 
 @endsection
