@@ -50,7 +50,7 @@ Route::get('cart', [ProductosController::class, 'cart'])->name('cart.index');
 Route::get('add-to-card/{id}', [ProductosController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [ProductosController::class, 'cartUpdate'])->name('cart.update');
 Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart']);
-//Route::post('/clear', [ProductosController::class, 'clear'])->name('cart.clear');
+//Route::post('/clear', [ProductosController::class, 'clear'])->name('cart.clear'); -> ¿Posible implementación?
 
 
 //Pedidos
@@ -78,10 +78,8 @@ Route::get('/most-sold', function() {
         $id = $mostSold->producto_id;
         $prod = Productos::where('id', '=', $id)->get();
         array_push($productos, $prod);
-
-        //dd($productos);
     }
-    //dd($mostSoldItems);
+    
     return new JsonResponse($productos);
 });
 
