@@ -13,7 +13,7 @@
         <h3>Lista de los productos del pedido</h3>
         <ul>
             @foreach($productos as $producto)
-                <li>{{ $producto['name'] }} ({{ $producto["quantity"] }} unidades) </li>
+                <li>{{ $producto['name'] }} ({{ $producto["quantity"] }} @if($producto['quantity']==1) unidad) @else unidades) @endif </li>
             @endforeach
         </ul>
 </body>
