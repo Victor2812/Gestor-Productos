@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedidos;
+use App\Models\Personas;
 use App\DataTables\PedidoDataTable;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+
 
 class PedidosController extends Controller
 {
@@ -52,13 +55,23 @@ class PedidosController extends Controller
 
         foreach($productos as $producto)
         {
-         $pedido->productos()->attach($producto['product_id'],['cantidad' => $producto['quantity'],'precio' => (float) $producto['precio'] * $producto['quantity'] ]);
+            $pedido->productos()->attach($producto['product_id'],['cantidad' => $producto['quantity'],'precio' => (float) $producto['precio'] * $producto['quantity'] ]);
         }
 
         DB::commit();
 
         $request->session()->forget('cart');
         flash('Pedido Realizado','success');
+
+        $user = Auth::user();
+        $email = $user->email;
+        $nombre = $user->name;
+        Mail::send('email.id_pedido', ['id' => $pedido->id, 'productos' => $productos], function ($mail) use ($email, $nombre) {
+            $mail->to($email, $nombre);
+            $mail->from('from@example.com', 'Egibide');
+            $mail->subject('Pedido realizado');
+        });
+
         return redirect()->route('confirmacion');
     }
     catch(\Exception $e)
@@ -103,6 +116,18 @@ class PedidosController extends Controller
         $pedido->update([
             'estado' => $request->estado
         ]);
+
+       
+        $user = Personas::where('id', "=", $pedido->persona_id)->get()->first();
+        $email = $user->email;
+        $nombre = $user->name;
+
+        Mail::send('email.estado_pedido', ['estado' => $pedido->estado, 'id' => $pedido->id], function ($mail) use ($email, $nombre) {
+            $mail->to($email, $nombre);
+            $mail->from('from@example.com', 'Egibide');
+            $mail->subject('Estado del pedido actualizado');
+        });
+        
         flash('Estado del pedido actaulizado','success');
         return redirect()->route('pedidos.index');
     }

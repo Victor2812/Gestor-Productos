@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Editar producto')
+@section('title', 'Editar pedido')
 
 @section('content')
     <main>
@@ -36,14 +36,14 @@
         <div>
            <label for="importe_total">Importe Total:</label>
            <input disabled id="importe_total" class="form-control" type="text" name="importe_total" value="{{ $pedido->importe_total }}" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('importe_total')" class="mt-2" />
        </div>
 
                <!-- Cliente-->
                <div>
                 <label for="cliente">Cliente:</label>
                 <input disabled id="cliente" class="form-control" type="text" name="cliente" value="{{ $pedido->cliente->name }}" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('cliente')" class="mt-2" />
             </div>
 
         <div class="mt-4">

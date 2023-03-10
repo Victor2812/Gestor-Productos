@@ -17,35 +17,35 @@
        <div>
            <label for="surname">Surname</label>
            <input id="surname" class="form-control" type="text" name="surname" value="{{ $persona->surname }}" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('surname')" class="mt-2" />
        </div>
 
         <!-- dni -->
         <div>
            <label for="dni">DNI</label>
            <input id="dni" class="form-control" type="text" name="dni" value="{{ $persona->dni }}" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('dni')" class="mt-2" />
        </div>
 
         <!-- phone -->
         <div>
            <label for="phone">Telefono</label>
            <input id="phone" class="form-control" type="text" name="phone" value="{{ $persona->phone }}" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('phone')" class="mt-2" />
        </div>
 
        <!-- email address -->
        <div>
            <label for="email">Email</label>
            <input id="email" class="form-control" type="text" name="email" value="{{ $persona->email }}" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('email')" class="mt-2" />
        </div>
 
        <!-- password -->
        <div>
            <label for="password">Contraseña</label>
            <input id="password" class="form-control" type="text" name="password" />
-           <x-input-error :messages="$errors->get('name')" class="mt-2" />
+           <x-input-error :messages="$errors->get('password')" class="mt-2" />
        </div>
 
        <div>
