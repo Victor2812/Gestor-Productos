@@ -47,7 +47,7 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                         <input type="text" name="surname" class="form-control" id="surname" placeholder="Apellidos" :value="old('surname')" required autofocus autocomplete="surname" />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('surname')" class="mt-2" />
                                     </div>
                                 </div>
 
@@ -59,7 +59,7 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                         <input type="text" name="dni" class="form-control" id="dni" placeholder="DNI" :value="old('dni')" required autofocus autocomplete="dni" />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('dni')" class="mt-2" />
                                     </div>
                                 </div>
 
@@ -71,7 +71,7 @@
                                             <i class="bi bi-telephone"></i>
                                         </div>
                                         <input type="text" name="phone" class="form-control" id="phone" placeholder="Teléfono" :value="old('phone')" required autofocus autocomplete="phone" />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                     </div>
                                 </div>
 
