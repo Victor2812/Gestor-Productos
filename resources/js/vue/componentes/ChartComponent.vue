@@ -40,7 +40,7 @@
                     var datasetsArray = [];
 
                     for (var i = 0; i < length; i++) {
-                        labelsArray.push(data[i] ? data[i].name : '');
+                        labelsArray.push(data[i] ? data[i].name.slice(0, 10) : '');
                         datasetsArray.push(data[i] ? data[i].quantity : '');
                     }
                     console.log(labelsArray);
