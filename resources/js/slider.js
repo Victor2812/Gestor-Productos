@@ -38,7 +38,7 @@ class slider extends HTMLElement {
                   border-color: #81005D;
                 }
                 .product-btn. btn-outline-primary {
-                  background-color: #81005D;
+                  background: #FFFFFF;
                   border-color: #81005D;
                 }
 

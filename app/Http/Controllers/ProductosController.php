@@ -105,10 +105,12 @@ class ProductosController extends Controller
     public function verCategoria($id) {
         $productos = Productos::where('categoria_id', "=", $id)->get()->all();
         $categoria = Categoria::where('id', "=", $id)->get()->first();
+        $subcategorias = Categoria::where('parent_id', "=", $id)->get()->all();
 
         return view('productos.verCategoria', [
             'productos' => $productos,
             'categoria' => $categoria,
+            'subcategorias' => $subcategorias,  
         ]);
     }
     /**

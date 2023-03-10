@@ -74,7 +74,7 @@ Route::get('/most-sold', function() {
                         ->select('producto_id', DB::raw('SUM(cantidad) as total_quantity'))
                         ->groupBy('Producto_id')
                         ->orderByDesc('total_quantity')
-                        ->limit(5)
+                        ->limit(3)
                         ->get();
 
     $productos = [];
