@@ -41,11 +41,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-// Datatables routes
-Route::resource('personas', PersonasController::class);
-Route::resource('productos', ProductosController::class);
-Route::resource('pedidos', PedidosController::class);
-Route::resource('categorias', CategoriaController::class);
+
 
 Route::get('logout', [PersonasController::class, 'logout'])->name('logout');
 
@@ -117,6 +113,12 @@ Route::get('/stats', function() {
 
 require __DIR__.'/auth.php';
 
+Route::group(['middleware' => 'isAdmin'], function () {
+    // Datatables routes
+Route::resource('personas', PersonasController::class);
+Route::resource('productos', ProductosController::class);
+Route::resource('pedidos', PedidosController::class);
+Route::resource('categorias', CategoriaController::class);
 
 //editar persona
 Route::get('/personas/editar/{persona}', [PersonasController::class,'edit'])->name('personas.edit');
@@ -145,6 +147,9 @@ Route::post('/categorias/update/{categoria}', [CategoriaController::class,'updat
 Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
 //borrrar categoria
 Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
+});
+
+
 
 
 
