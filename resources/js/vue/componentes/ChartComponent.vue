@@ -29,6 +29,7 @@
             }
         },
         mounted() {
+            console.log("mounting...");
             fetch("/stats").then(async (response) => {
                 const data = await response.json();
                 if (response.ok) {

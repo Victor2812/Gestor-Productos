@@ -6,24 +6,25 @@
     <div class="container">
 
         <div class="row justify-content-center">
-            <div class="col-lg-12">
-                
-                <div class="row my-5 d-flex justify-content-center">
+            <div class="py-3 py-sm-5 h-100">
+                <div class="card">
+                    <div class="row card-body p-3 d-flex justify-content-center">
                     @foreach ($categorias as $cat)
-                        <div class="col-12 col-sm-2">
-                            <a href="{{ route('producto.categoria', $cat->id) }}">
-                                <div class="category-btn d-flex justify-content-center align-items-center">
-                                    <div class="category-icon d-flex justify-content-center align-items-center">
-                                        <h2 class="m-0"><i class="bi bi-fire"></i></h2>
-                                    </div>
-                                    <h2 class="category-name m-0">{{ $cat->name }}</h2>    
-                                </div>
+                        <div class="col-12 col-sm-2 mb-2 mb-sm-0">
+                            <a class="category-link btn-outline-primary" href="{{ route('producto.categoria', $cat->id) }}">
+                                {{ $cat->name }}
                             </a> 
                         </div>                       
                     @endforeach
+                    </div>
                 </div>
             </div>
         </div>
+
+        
+                
+                
+        
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 
