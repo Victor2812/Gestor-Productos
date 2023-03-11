@@ -13,6 +13,14 @@
     @include after-hover-guapo;
 }
 
+.nav-item::after {
+    @include after-guapo(white, 3px);
+}
+
+.nav-item:hover::after {
+    @include after-hover-guapo;
+}
+
 .navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
     color: $primary;
     font-weight: 600;

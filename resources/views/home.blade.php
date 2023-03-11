@@ -20,7 +20,7 @@
 
     <!-- MÁS VENDIDOS -->
     <div class="container mt-5">
-        <h2 class="h2">Más vendidos  </h2>
+        <h1 class="fw-bold mb-4">Más vendidos</h1>
         <slider-component></slider-component>
     </div>
     <!-- END MÁS VENDIDOS -->

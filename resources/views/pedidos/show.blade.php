@@ -3,46 +3,30 @@
 @section('title', 'Productos')
 
 @section('content')
-    <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="">Estado Pedido:</label>
-                    </div>
-                    <div class="col-sm-9">
-                        {{ $pedido->estado }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="">Fecha Reserva:</label>
-                    </div>
-                    <div class="col-sm-9">
-                        {{ $pedido->fecha_reserva }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="">Fecha Recogida:</label>
-                    </div>
-                    <div class="col-sm-9">
-                        {{ $pedido->fecha_recogida }}
+
+<main>
+<div class="container">
+    <div class="py-3 h-100">
+        
+        <div class="card">
+            <div class="card-body p-0">
+
+                <div class="row g-0 d-flex justify-content-center">
+                    <div class="col-10 col-sm-10 mb-5">
+
+                        <!-- Titulo -->
+                        <h1 class="fw-bold mb-4 pt-5 text-start">{{$pedido->id}}</h1>
+                        <h4 class="mb-3 text-uppercase"><span class="fw-bold text-primary text-capitalize">Estado: </span>{{$pedido->estado}}</h4>
+                        <h4 class="mb-3"><span class="fw-bold text-primary">Fecha reserva: </span>{{$pedido->fecha_reserva}}</>
+                        <h4 class="mb-3"><span class="fw-bold text-primary">Fecha recogida: </span>{{$pedido->fecha_recogida}}</>
+                        <h4 class="mb-3"><span class="fw-bold text-primary">Importe total: </span>{{$pedido->importe_total}}</h4>
+                        <h4 class="mb-3"><span class="fw-bold text-primary">Cliente: </span>{{$pedido->cliente->fullName()}}</h4>
+
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="">Importe Total:</label>
-                    </div>
-                    <div class="col-sm-9">
-                        {{ $pedido->importe_total }} €
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="">Cliente</label>
-                    </div>
-                    <div class="col-sm-9">
-                        {{ $pedido->cliente->name }}
-                    </div>
-                </div>
+            </div>
+        </div>
     </div>
+</div>
+</main>
 @endsection

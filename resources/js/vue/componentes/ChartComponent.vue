@@ -19,7 +19,7 @@
                     datasets: [
                     {
                         label: 'Data One',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#CF3EA6',
                         data: []
                     }]
                 },
@@ -49,7 +49,7 @@
                         labels: labelsArray,
                         datasets: [{
                             label: 'Data One',
-                            backgroundColor: '#f87979',
+                            backgroundColor: '#CF3EA6',
                             data: datasetsArray,
                         }] 
                     }

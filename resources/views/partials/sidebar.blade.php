@@ -5,7 +5,7 @@
 
         <!-- Productos -->
         <li class="nav-item">
-            <a href="" class="nav-link align-middle px-0 text-white">
+            <a href="{{ route('productos.index') }}" class="nav-link align-middle px-0 text-white">
                 <i class="fs-4 bi-bag"></i> <span class="ms-1 d-none d-sm-inline">Productos</span>
             </a>
         </li>
@@ -19,22 +19,15 @@
 
         <!-- Categorias -->
         <li class="nav-item">
-            <a href="" class="nav-link align-middle px-0 text-white">
+            <a href="{{ route('categorias.index') }}" class="nav-link align-middle px-0 text-white">
                 <i class="fs-4 bi-tag"></i> <span class="ms-1 d-none d-sm-inline">Categorias</span>
             </a>
         </li>
 
         <!-- Pedidos -->
         <li class="nav-item">
-            <a href="" class="nav-link align-middle px-0 text-white">
+            <a href="{{ route('pedidos.index') }}" class="nav-link align-middle px-0 text-white">
                 <i class="fs-4 bi-file-earmark"></i> <span class="ms-1 d-none d-sm-inline">Pedidos</span>
-            </a>
-        </li>
-
-        <!-- Estadisticas -->
-        <li class="nav-item">
-            <a href="" class="nav-link align-middle px-0 text-white">
-                <i class="fs-4 bi-bar-chart"></i> <span class="ms-1 d-none d-sm-inline">Estadísticas</span>
             </a>
         </li>
 

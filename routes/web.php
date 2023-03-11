@@ -61,6 +61,7 @@ Route::post('/remove-from-cart', [ProductosController::class, 'removeFromCart'])
 Route::get("/pedido/calendario", [PedidosController::class, "calendario"])->name("pedido.calendario");
 Route::post("/pedido/store", [PedidosController::class, "store"])->name("pedido.store");
 Route::get('/mis-pedidos', [PedidosController::class, "misPedidos"])->name("pedido.mis-pedidos");
+Route::get('/mi-pedido/{id}', [PedidosController::class, "miPedido"])->name("pedido.mi-pedido");
 
 // Productos por categoria
 Route::get('categoria/{id}', [ProductosController::class, 'verCategoria'])->name('producto.categoria');
