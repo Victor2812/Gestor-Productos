@@ -83,7 +83,7 @@
                                                             <span class="fw-bold">{{ $p->importe_total }}</span>
                                                         </div>
                                                         <div class="col-1 text-center">
-                                                            <a href="" class="cont-btn btn-primary">
+                                                            <a href="{{ route('pedido.mi-pedido', $p->id) }}" class="cont-btn btn-primary">
                                                                 <i class="bi bi-eye"></i>
                                                             </a>    
                                                         </div>

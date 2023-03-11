@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Pedidos;
 use App\Models\Personas;
 use App\DataTables\PedidoDataTable;
+use App\Models\Pedido_Producto;
+use App\Models\Productos;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
@@ -86,8 +88,20 @@ class PedidosController extends Controller
      * Display the specified resource.
      */
     public function show(Pedidos $pedido)
-    {
-        return view('pedidos.show',compact('pedido'));
+    {   
+        $productos = [];
+        $pd = DB::table('pedido_productos')->where('pedido_id', '=', $pedido -> id)->get()->all();
+
+        foreach ( $pd as $p) {
+            $prod = Productos::where('id', '=', $p->producto_id)->get()->first();
+            array_push($productos, $prod);
+        }
+
+        return view('pedidos.show', [ 
+            'pedido' => $pedido, 
+            'pedprod' => $pd,
+            'productos' => $productos
+        ]);
     }
 
     /**
@@ -178,8 +192,21 @@ class PedidosController extends Controller
     }
 
     public function miPedido($id) {
+        $productos = [];
+        $pedido = DB::table('pedido_productos')->where('pedido_id', '=', $id)->get()->all();
+        $ped = Pedidos::where('id', '=', $id)->get()->first();
 
-        return view('pedidos.show_my_order');
+        foreach ( $pedido as $p) {
+            $prod = Productos::where('id', '=', $p->producto_id)->get()->first();
+            array_push($productos, $prod);
+        }
+
+
+        return view('pedidos.show_my_order', [
+            'pedido' => $pedido,
+            'productos' => $productos,
+            'total' => $ped,
+        ]);
     }
 
 
