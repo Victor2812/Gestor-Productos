@@ -3,34 +3,49 @@
 @section('title', 'Productos')
 
 @section('content')
-    <div class="container">
+
+<div class="container">
+
         
         <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <h4>{{ $categoria->name }}</h4>
+            <div class="py-3 py-sm-5 h-100">
+                @if($subcategorias)
+                <div class="card">
+                    <div class="row card-body p-3 d-flex justify-content-center">
+                    @foreach($subcategorias as $subcat)
+                        <div class="col-12 col-sm-3 mb-2 mb-sm-0">
+                            <a class="category-link btn-outline-primary" href="{{ route('producto.categoria', $subcat->id) }}">
+                                {{ $subcat->name }}
+                            </a> 
+                        </div>                       
+                    @endforeach
                     </div>
                 </div>
                 <hr>
-                @if ($subcategorias)
-                    <div class="row justify-content-center">
-                        <div class="py-3 py-sm-5 h-100">
-                            <div class="card">
-                                <div class="row card-body p-3 d-flex justify-content-center">
-                                @foreach ($subcategorias as $subcat)
-                                    <div class="col-12 col-sm-2 mb-2 mb-sm-0">
-                                        <a class="category-link btn-outline-primary" href="{{ route('producto.categoria', $subcat->id) }}">
-                                            {{ $subcat->name }}
-                                        </a> 
-                                    </div>                       
-                                @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
                 <div class="row mb-4">
+                <div class="d-inline-flex align-items-center mt-5">
+                    <h6 class="mb-0">
+                        <a href="{{ route('shop') }}" class="cont-btn btn-primary">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </h6>
+                    <h1 class="ms-4 fw-bold mb-0 text-capitalize">{{ $categoria->name }}</h1>   
+                </div>
+                
+                @else
+                <div class="d-inline-flex align-items-center ">
+                    <h6 class="mb-0">
+                        <a href="{{ route('shop') }}" class="cont-btn btn-primary">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </h6>
+                    <h1 class="ms-4 fw-bold mb-0 text-capitalize">{{ $categoria->name }}</h1>   
+                </div>
+                @endif
+            </div>
+        </div>
+        
+        <div class="row mb-4">
                     @foreach($productos as $item)
                     <div class="col-sm-6 col-md-4 mb-4">
                         <div class="card shadow">
@@ -53,8 +68,6 @@
                         </div>
                     </div>
                     @endforeach
-                
-
                     <!-- Productos subcategorias -->
                     @if ($subcategorias)
                     @foreach ($subcategorias as $subcat)
@@ -86,7 +99,13 @@
                     @endforeach
                     @endif
                 </div>
-            </div>
-        </div>
-    </div>
+
+                
+
+
+</div>
+
+
+
+    
 @endsection

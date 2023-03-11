@@ -5,14 +5,14 @@
 @section('content')
 <main>
 <div class="container">
-    <div class="py-5 h-100">
+    <div class="py-3 h-100">
         
         <div class="card">
             <div class="card-body p-0">
 
                 <!-- Formulario -->
                 <div class="row g-0 d-flex justify-content-center">
-                    <div class="col-10 col-sm-8">
+                    <div class="col-10 col-sm-10">
 
                         <!-- Titulo -->
                         <h1 class="fw-bold mb-0 pt-5 text-start">Nuevo Usuario</h1>
@@ -22,7 +22,7 @@
                             @if(isset($ruta))
                                 <input type="hidden" name="ruta" value="{{ $ruta }} " />
                             @endif
-                            <div class="row d-flex justify-content-center g-0">
+                            <div class="row d-flex justify-content-start g-0">
 
                                 <!-- Nombre -->
                                 <div class="col-12 col-sm-5 mb-2 pe-0 pe-sm-2">
@@ -61,10 +61,13 @@
                                 </div>
                                 
                                 <!-- Rol -->
-                                <div class="col-12 col-sm-4 mb-2 pe-0 pe-sm-2">
+                                <div class="col-12 col-sm-4 mb-2 px-0 px-sm-2">
                                     <label class="visually-hidden" for="rol_id">Escoge la categoria</label>
                                     <div class="input-group">
-                                        <select name="rol_id" id="rol_id" class="form-control">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-person-workspace"></i>
+                                        </div>
+                                        <select name="rol_id" id="rol_id" class="form-control form-select">
                                                 <option value="1">Administrador</option>
                                                 <option value="2">Cliente</option>
                                         </select>
@@ -120,9 +123,9 @@
                                 </div>
 
                                 <!-- Login Button -->
-                                <div class="col-12 col-sm-4 d-flex justify-content-center mt-4">
+                                <div class="col-12 col-sm-3 d-flex justify-content-center mt-4">
                                     <button class="login-btn btn-primary">
-                                        {{ __('Crear Usuario') }}
+                                        {{ __('Crear') }}
                                     </button>
                                 </div>
 

@@ -152,7 +152,7 @@ class PedidosController extends Controller
     // Mis Pedidos
     public function misPedidos(Request $request) {
         $pedidosFiltrados = null;
-        $pedidos = Pedidos::where('persona_id', '=', Auth::user()->id)->get();
+        $pedidos = Pedidos::where('persona_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
     
         $request->validate([
             'search' => 'nullable|integer',
@@ -175,6 +175,11 @@ class PedidosController extends Controller
             'pedido' => $pedidosFiltrados,
             'old_search' => $search
         ]);
+    }
+
+    public function miPedido($id) {
+
+        return view('pedidos.show_my_order');
     }
 
 

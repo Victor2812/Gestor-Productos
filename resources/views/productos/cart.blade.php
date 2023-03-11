@@ -39,7 +39,7 @@
                                 <h6 class="text-black mb-0">{{ $details['descrition'] }}</h6>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="cont-btn btn-primary" name="resta">
+                                <button class="cont-btn btn-outline-primary" name="resta">
                                   <i class="bi bi-dash"></i>
                                 </button>
         
@@ -51,10 +51,13 @@
                                 </button>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h6 class="dropdown-cart-price text-primary">{{ $details['precio'] * $details['quantity'] }}€</h6>
+                                <h6 class="fw-bold">{{ $details['precio'] * $details['quantity'] }}€</h6>
                             </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end remove-from-cart">
-                              <i class="bi bi-trash3" style="color: black"></i>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-center remove-from-cart">
+                              <button class="cont-btn btn-primary">
+                                <i class="bi bi-trash3"></i>
+                              </button>
+                              
                             </div>
                           </li>
         
@@ -63,8 +66,11 @@
                     @endif
 
                     <div class="pt-5">
-                      <h6 class="mb-0"><a href="{{ route('shop') }}" class="text-body"><i
-                            class="bi bi-arrow-left" style="color:black"></i></a></h6>
+                      <h6 class="mb-0">
+                        <a href="{{ route('shop') }}" class="cont-btn btn-primary">
+                          <i class="bi bi-arrow-left"></i>
+                        </a>
+                      </h6>
                     </div>
                   </div>
                 </ul>
@@ -72,52 +78,47 @@
                 <!-- SUMMMARY -->
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
-                    <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
-                    <hr class="my-4">
-  
-                    <div class="d-flex justify-content-between mb-4">
-                      <h5 class="text-uppercase">items {{ count((array) session('cart')) }}</h5>
-                      <h5>€ {{ $total }}</h5>
-                    </div>
-  
-                    <h5 class="text-uppercase mb-3">Shipping</h5>
-  
-                    <div class="mb-4 pb-2">
-                      <select class="select">
-                        <option value="1">Standard-Delivery- €5.00</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                      </select>
-                    </div>
-                    <!--
-                    <h5 class="text-uppercase mb-3">Give code</h5>
-  
-                    <div class="mb-5">
-                      <div class="form-outline">
-                        <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-                        <label class="form-label" for="form3Examplea2">Enter your code</label>
-                      </div>
-                    </div>
-                  -->
-                    <hr class="my-4">
+                    <h3 class="fw-bold mb-4 mt-2 pt-1">Recogida</h3>
 
                     <form action="{{route('pedido.store')}}" method="POST">
                       @csrf
-                      <input type="date" name="fecha" id="date1" min="{{ now()->addDays(3)->toDateString() }}" required/>
+
+                      <div class="col-12 mb-4 text-start">
+                        <p>
+                          Selecciona una fecha para recoger tu pedido. Recuerda que nuestras cocinas necesitan un mínimo de tres días para prepararlo y que no trabajamos los fines de semana.
+                        </p>
+                      </div>
+
+                     <!-- Fecha -->
+                      <div class="col-12 mb-2 ">
+                          <label class="visually-hidden" for="name">Fecha recogida</label>
+                          <div class="input-group">
+                              <div class="input-group-text">
+                                <i class="bi bi-exclamation-triangle"></i>
+                              </div>
+                              <input type="date" name="fecha" id="date1" class="form-control" min="{{ now()->addDays(3)->toDateString() }}" required>
+                          </div> 
+                      </div>
+
+                      
                       
                     <hr class="my-4">
   
-                      <div class="d-flex justify-content-between mb-5">
-                        <h5 class="text-uppercase">Total price</h5>
-                        <h5>€ {{ $total }}</h5>
+                      <div class="d-flex justify-content-between mb-3">
+                        <h5 class="fw-bold">Total </h5>
+                        <h5 class="fw-bold">{{ $total }}€</h5>
                       </div>
 
                     
                       @auth
-                        <button type="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Realizar pedido</a>
+                        <div class="d-flex justify-content-center">
+                          <button type="submit" class="normal-btn btn-primary" data-mdb-ripple-color="dark" role="button">Pedir</a>
+                        </div>
+                        
                       @else
-                        <a href="{{ route('register', ['ruta' => 'cart.index' ] ) }}" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" role="button">Registrar</a>
+                        <div class="d-flex justify-content-center">
+                          <a href="{{ route('register', ['ruta' => 'cart.index' ] ) }}" class="normal-btn btn-primary" role="button">Regístrate</a>
+                        </div>
                       @endauth
                     </form>
   

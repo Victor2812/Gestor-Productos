@@ -3,56 +3,137 @@
 @section('title', 'Mis Pedidos')
 
 @section('content')
-    <h1>Mis Pedidos</h1>
-    <hr>
-    <div>
-        <div class="row px-4 gx-sm-3" id="filtros">
-            <form action="{{ route(Route::currentRouteName()) }}" method="GET">
-            
-                <!-- Row -->
-                <div class="row mb-0 mb-sm-3 gx-0">
 
-                    <!-- Buscador -->
-                    <div class="col-12 mb-3 col-sm-4 mb-sm-0 px-sm-1">
-                        <div class="form-outline">
-                            <input type="text" class="form-control" name="search" placeholder="ID PEDIDO" value="{{ $old_search }}"/>
+<main>
+    <div class="container">
+        <div class="py-5 h-100">
+        
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <div class="row g-0 d-flex justify-content-center">
+                        <div class="col-10">
+                            <h1 class="fw-bold mb-2 pt-5 text-start">Mis pedidos</h1>
+                            
+                            <form method="GET" action="{{ route(Route::currentRouteName()) }}" class="py-5">
+                                @csrf
+                                <div class="row">
+
+                                    <!-- Buscador -->
+                                    <div class="col-12 col-sm-9 mb-5">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-file-earmark"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="search" placeholder="Identificador de tu pedido" value="{{ $old_search }}">
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-12 col-sm-3 mb-5">
+                                        <input type="submit" class="normal-btn btn-primary" value="Buscar">
+                                    </div>
+
+                                    <!-- Pedidos -->
+                                    <ul class="row g-0">
+
+                                        <hr class="my-2">
+
+                                        <li class="row mb-2 d-flex justify-content-between align-items-center g-0">
+                                            <div class="col-1 text-center">
+                                                <span class="fw-bold">ID</span>
+                                            </div>
+                                            <div class="col-3 text-center">
+                                                <span class="fw-bold">ESTADO</span>
+                                            </div>
+                                            <div class="col-2 text-center">
+                                                <span class="fw-bold">FECHA RECOGIDA</span>
+                                            </div>
+                                            <div class="col-2 text-center">
+                                                <span class="fw-bold">FECHA RESERVA</span>
+                                            </div>
+                                            <div class="col-2 text-center">
+                                                <span class="fw-bold">IMPORTE</span>
+                                            </div>
+                                            <div class="col-1 text-center">
+                                                <span class="fw-bold">VER</span>
+                                                
+                                            </div>
+                                        </li>
+                                       
+                                        <hr class="mb-4">
+                                            
+                                            @if (!isset($pedido))
+                                                @foreach ($pedidos as $p)
+
+                                                    <li class="row mb-2 d-flex justify-content-between align-items-center g-0">
+                                                        <div class="col-1 text-center">
+                                                            <span class="fw-bold">{{ $p->id }}</span>
+                                                        </div>
+                                                        <div class="col-3 text-center">
+                                                            <span class="normal-btn btn-outline-primary text-uppercase">{{ $p->estado }}</span>
+                                                        </div>
+                                                        <div class="col-2 text-center">
+                                                            <span>{{ $p->fecha_recogida }}</span>
+                                                        </div>
+                                                        <div class="col-2 text-center">
+                                                            <span>{{ $p->fecha_reserva }}</span>
+                                                        </div>
+                                                        <div class="col-2 text-center">
+                                                            <span class="fw-bold">{{ $p->importe_total }}</span>
+                                                        </div>
+                                                        <div class="col-1 text-center">
+                                                            <a href="" class="cont-btn btn-primary">
+                                                                <i class="bi bi-eye"></i>
+                                                            </a>    
+                                                        </div>
+                                                    </li>
+                                    
+                                                    <hr class="my-4">
+                                                @endforeach 
+                                            @else
+                                            <li class="row mb-2 d-flex justify-content-between align-items-center g-0">
+                                                <div class="col-1 text-center">
+                                                    <span class="fw-bold">{{ $pedido->id }}</span>
+                                                </div>
+                                                <div class="col-3 text-center">
+                                                    <span class="normal-btn btn-outline-primary text-uppercase">{{ $pedido->estado }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span>{{ $pedido->fecha_recogida }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span>{{ $pedido->fecha_reserva }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="fw-bold">{{ $pedido->importe_total }}</span>
+                                                </div>
+                                                <div class="col-1 text-center">
+                                                    <a href="{{ route('pedido.mi-pedido', $pedido->id) }}" class="cont-btn btn-primary">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>    
+                                                </div>
+                                            </li>
+
+                                                <hr class="my-4">
+                                            @endif   
+                                    </ul>
+
+
+
+
+
+
+
+
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <!-- value="$old_search }}" -->
-                    <div class="col-12 mb-3 col-sm mb-sm-0 px-sm-1">
-                        <input type="submit" class="dropdown-cart-btn btn-outline-primary btn-block" value="Buscar">
-                    </div>
                 </div>
-            </form>
-        </div>
-        <div>
-            <span>ID</span>
-            <span>ESTADO</span>
-            <span>FECHA RECOGIDA</span>
-            <span>FECHA RESERVA</span>
-            <span>IMPORTE TOTAL</span>
-            <span>VER</span>
-        </div>
-        @if (!isset($pedido))
-            @foreach ($pedidos as $p)
-                <div>
-                    <span>{{ $p->id }}</span>
-                    <span class="text-uppercase">{{ $p->estado }}</span>
-                    <span>{{ $p->fecha_recogida }}</span>
-                    <span>{{ $p->fecha_reserva }}</span>
-                    <span>{{ $p->importe_total }}</span>
-                    <span><a href=""><i class="bi bi-eye"></i></a></span>
-                </div>
-            @endforeach 
-        @else 
-        <div>
-            <span>{{ $pedido->id }}</span>
-            <span class="text-uppercase">{{ $pedido->estado }}</span>
-            <span>{{ $pedido->fecha_recogida }}</span>
-            <span>{{ $pedido->fecha_reserva }}</span>
-            <span>{{ $pedido->importe_total }}</span>
-            <span><a href=""><i class="bi bi-eye"></i></a></span>
-        </div>
-        @endif                    
+            </div>                
+        </div>                
     </div>
+</main>
+
 @endsection
