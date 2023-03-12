@@ -46,7 +46,7 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         
-        $validate = $request->validate([
+        $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
             'alt' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
@@ -117,15 +117,22 @@ class ProductosController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Productos $producto)
-    {
-        $producto->update([
-            'name' => $request->name,
-            'descripction' => $request->descripction,
-            'tipo_vender' => $request->tipo_vender,
-            'precio_base' => $request->precio_base,
-            'pedido_minimo' => $request->pedido_minimo,
-            'categoria_id' => $request->categoria_id
-        ]);
+    {       
+        if ($request->alt == null) {
+            $alt = $producto->alt;
+        } else {
+            $alt = "/ims/" . $request->alt;
+        }
+
+        $producto->name = $request->name;//$validate['name'];
+        $producto->description = $request->description;//$validate['description'];
+        $producto->tipo_vender = $request->tipo_vender;
+        $producto->precio_base = $request->precio_base;
+        $producto->pedido_minimo = $request->pedido_minimo;
+        $producto->alt = $alt;
+        $producto->categoria_id = $request->categoria_id;
+
+        $producto->save();
 
         flash('Producto actualizado','success');
         return Redirect::route('productos.index');

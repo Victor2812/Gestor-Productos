@@ -105,7 +105,7 @@
                                 <!-- Imagen -->
                                 <div class="col-12 col-sm-9 my-2">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file" id="file">
+                                        <input type="file" class="custom-file-input" name="alt" id="file">
                                         <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                                         <x-input-error :messages="$errors->get('alt')" class="mt-2" />
                                     </div>   

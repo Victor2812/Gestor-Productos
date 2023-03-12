@@ -150,17 +150,15 @@ class PedidosController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Pedidos $pedido)
-    {
-        try{
-            $pedido->delete();
-            flash('Pedido Borrado','success');
-            return redirect()->back();
+    {   
+        $pd = DB::table('pedido_productos')->where('pedido_id', '=', $pedido->id)->get();
+        //dd($pd);
+        foreach ($pd as $ped) {
+            DB::table('pedido_productos')->where('id', '=', $ped->id)->delete();
         }
-        catch(Exception $e)
-        {
-            flash('Error: al borrar un pedido','danger');
-            return redirect()->back();
-        }
+        Pedidos::destroy($pedido->id);
+        flash('Pedido eliminado','success');
+        return redirect()->route('pedidos.index');
     }
 
     // Mis Pedidos

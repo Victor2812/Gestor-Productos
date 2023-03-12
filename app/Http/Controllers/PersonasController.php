@@ -87,7 +87,7 @@ class PersonasController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Personas $persona)
-    {           
+    {          
         $request->validate([
             "name" => 'required|string|max:255',
             "surname" => 'required|string|max:255',
@@ -96,24 +96,23 @@ class PersonasController extends Controller
             "phone" => 'required',
             'role_id' => 'required'
         ]);
-
+        
         if ($request->password == '') {
             $pass = $persona->password;
         } else {
             $pass = Hash::make($request->password);
         }
-
-        $persona->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'surname' => $request['surname'],
-            'dni' => $request['dni'],
-            'phone' => $request['phone'],
-            'password' => $pass,
-            'role_id' => $request['role_id']
-        ]);
-        $persona->save();
         
+        $persona->name = $request->name;
+        $persona->surname = $request->surname;
+        $persona->dni = $request->dni;
+        $persona->role_id = $request->role_id;
+        $persona->phone = $request->phone;
+        $persona->email = $request->email;
+        $persona->password = $pass;
+
+        $persona->save();
+
         flash('Usuario actualizado','success');
         return redirect()->route('personas.index');
 

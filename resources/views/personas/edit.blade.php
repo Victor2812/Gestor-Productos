@@ -19,7 +19,7 @@
                         <!-- Titulo -->
                         <h1 class="fw-bold mb-0 pt-5 text-start">Editar Usuario</h1>
                     
-                        <form method="POST" action="{{ route('personas.update', [$persona]) }}" class="py-5">
+                        <form method="POST" action="{{ route('personas.update', $persona) }}" class="py-5">
                             @csrf
                             
                             <div class="row d-flex justify-content-start g-0">
@@ -61,12 +61,12 @@
                                 
                                 <!-- Rol -->
                                 <div class="col-12 col-sm-4 mb-2 px-0 px-sm-2">
-                                    <label class="visually-hidden" for="rol_id">Escoge la categoria</label>
+                                    <label class="visually-hidden" for="role_id">Escoge la categoria</label>
                                     <div class="input-group">
                                         <div class="input-group-text">
                                             <i class="bi bi-person-workspace"></i>
                                         </div>
-                                        <select name="rol_id" id="rol_id" class="form-control form-select">
+                                        <select name="role_id" id="role_id" class="form-control form-select">
                                         @foreach($roles as $rol)
                                             <option value="{{ $rol->id }}" {{ $rol->id == old('role_id', $persona->role_id) ? 'selected' : '' }}>
                                                 {{ $rol->name }}

@@ -146,6 +146,10 @@ Route::post('/categorias/update/{categoria}', [CategoriaController::class,'updat
 Route::get('/categorias/ver/{categoria}', [CategoriaController::class,'show'])->name('categorias.show');
 //borrrar categoria
 Route::get('/categorias/destroy/{categoria}', [CategoriaController::class,'destroy'])->name('categorias.destroy');
+
+//borar pedidos
+Route::get('/pedidos/destroy/{pedido}', [PedidosController::class, 'destroy'])->name('pedidos.destroy');
+
 });
 
 
