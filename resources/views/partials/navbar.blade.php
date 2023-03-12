@@ -24,9 +24,19 @@
                     <li class="nav-item">
                         <a class="nav-link  {{ Request::segment(1) === 'tienda' ? 'active' : '' }}" href="{{ route('shop') }}">Tienda</a>
                     </li>
+                    <li class="nav-item d-block d-sm-none">
+                        <a class="nav-link {{ Request::segment(1) === 'cart' ? 'active' : '' }}" href="{{ route('cart.index') }}">Carrito</a>
+                    </li>
+                    
                     @auth
                         <li class="nav-item">
                             <a class="nav-link {{ Request::segment(1) == 'mis-pedidos' ? 'active' : '' }}" href="{{ route('pedido.mis-pedidos') }}">Pedidos</a>
+                        </li>
+                    @endauth
+
+                    @auth    
+                        <li class="nav-item d-block d-sm-none">
+                            <a class="nav-link" href="{{ route('logout') }}">Cerrar Sesión</a>
                         </li>
                     @endauth
                     
@@ -38,7 +48,7 @@
             <!-- End Menu -->
 
             <!-- Botones Derecha -->
-            <div class="d-flex">
+            <div class="d-none d-sm-flex">
 
                 <!-- Carrito -->
                 <div class="dropstart px-3">

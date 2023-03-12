@@ -5,7 +5,7 @@
 @section('content')
 
 <main>
-    <div class="row">
+    <div class="row d-none d-sm-block">
         <!-- SLIDER -->
         <div class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">

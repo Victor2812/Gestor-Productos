@@ -10,7 +10,19 @@
         <div class="row justify-content-center">
             <div class="py-3 py-sm-5 h-100">
                 @if($subcategorias)
-                <div class="card">
+                
+                
+                <div class="row">
+                <div class="d-inline-flex align-items-center my-3">
+                    <h6 class="mb-0 d-none d-sm-block">
+                        <a href="{{ route('shop') }}" class="cont-btn btn-primary">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </h6>
+                    <h1 class="ms-4 fw-bold mb-0 text-capitalize">{{ $categoria->name }}</h1>   
+                </div>
+
+                <div class="card mt-3">
                     <div class="row card-body p-3 d-flex justify-content-center">
                     @foreach($subcategorias as $subcat)
                         <div class="col-12 col-sm-3 mb-2 mb-sm-0">
@@ -21,20 +33,10 @@
                     @endforeach
                     </div>
                 </div>
-                <hr>
-                <div class="row mb-4">
-                <div class="d-inline-flex align-items-center mt-5">
-                    <h6 class="mb-0">
-                        <a href="{{ route('shop') }}" class="cont-btn btn-primary">
-                            <i class="bi bi-arrow-left"></i>
-                        </a>
-                    </h6>
-                    <h1 class="ms-4 fw-bold mb-0 text-capitalize">{{ $categoria->name }}</h1>   
-                </div>
                 
                 @else
                 <div class="d-inline-flex align-items-center ">
-                    <h6 class="mb-0">
+                    <h6 class="mb-0 d-none d-sm-block">
                         <a href="{{ route('shop') }}" class="cont-btn btn-primary">
                             <i class="bi bi-arrow-left"></i>
                         </a>

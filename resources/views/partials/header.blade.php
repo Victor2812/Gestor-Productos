@@ -8,7 +8,7 @@
             <!-- Botones Derecha -->
             <div class="d-flex">
                 <!-- Login -->
-                <div class="d-flex flex-row align-items-center justify-content-center header-guapo">
+                <div class="d-none d-sm-flex flex-row align-items-center justify-content-center header-guapo">
                     @auth
                         <p class="mb-0" style="color : grey">{{ auth()->user()->fullName()}}</p>
                         <div class="divider d-none d-lg-inline"></div>

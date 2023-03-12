@@ -35,10 +35,10 @@
                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                <h6 class="dropdown-cart-name">{{ $details['name'] }}</h6>
+                                <h6 class="dropdown-cart-name mt-2 mt-sm-0">{{ $details['name'] }}</h6>
                                 <h6 class="text-black mb-0">{{ $details['descrition'] }}</h6>
                             </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-none d-sm-flex">
                                 <button class="cont-btn btn-outline-primary" name="resta">
                                   <i class="bi bi-dash"></i>
                                 </button>
@@ -53,7 +53,7 @@
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                 <h6 class="fw-bold">{{ $details['precio'] * $details['quantity'] }}€</h6>
                             </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-center remove-from-cart">
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-sm-center remove-from-cart text-end puto-boton">
                               <button class="cont-btn btn-primary">
                                 <i class="bi bi-trash3"></i>
                               </button>
@@ -65,7 +65,7 @@
                         @endforeach
                     @endif
 
-                    <div class="pt-5">
+                    <div class="pt-5 d-none d-sm-block">
                       <h6 class="mb-0">
                         <a href="{{ route('shop') }}" class="cont-btn btn-primary">
                           <i class="bi bi-arrow-left"></i>

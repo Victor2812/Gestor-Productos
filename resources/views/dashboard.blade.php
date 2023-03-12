@@ -80,7 +80,7 @@
 <!-- End Row -->
 
 <!-- Row -->
-<div class="row">
+<div class="row d-none d-sm-block">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
