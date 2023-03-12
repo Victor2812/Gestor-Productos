@@ -1,0 +1,17 @@
+.dropdown-cart-price, .dropdown-cart-name, .dropdown-cart-total-price {
+    font-weight: 600;
+}
+
+.dropdown-cart-total-price {
+    font-size: 1.2rem;
+}
+
+.dropdown-cart-btn {
+    @extend .btn;
+    border-radius: 1.5rem;
+    padding: 0.3rem 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-width: 0.15rem;
+}
+

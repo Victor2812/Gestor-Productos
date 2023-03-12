@@ -1,0 +1,94 @@
+.h2 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h1, h2 {
+    color: #212529;
+}
+
+.category-link {
+    @extend .btn;
+    border-radius: 1.5rem;
+    padding: 0.3rem 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-width: 0.15rem;
+    width: 100%;
+}
+
+.cont-btn {
+    @extend .btn;
+    border-radius: 50%;
+    padding: 0 0.3rem;
+    text-transform: uppercase;
+    border-width: 0.15rem;
+    font-size: 1rem;
+}
+
+.cart-input {
+    border: none !important;
+}
+
+/* QUITAR LAS MIERDAS DE LOS INPUTS DE CHROME */
+/* object-fit: cover*/
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+
+/* layaout dashboard */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    .content-wrapper {
+        background-color: $secondary;
+        width: 100%;
+        overflow-x: hidden;
+        .content {
+            flex: 1 0 auto;
+        }
+    }
+}
+
+/* paginacion tablas */
+.page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+// Botoncito de carga de las tablas
+div.dataTables_processing>div:last-child>div {
+    position: absolute;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: $primary;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

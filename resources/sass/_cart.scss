@@ -1,0 +1,29 @@
+
+.b-cart {
+    @extend .btn;
+    border-radius: 1.5rem;
+    padding: 0.3rem 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-width: 0.15rem;
+
+    position: relative;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.b-cart::before {
+    content: attr(data-count);
+    position: absolute;
+    top: -0.6em;
+    right: -0.6em;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $primary;
+    color: white;
+    font-size: medium;
+}

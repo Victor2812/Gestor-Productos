@@ -1,77 +1,151 @@
+<!--Formulario de registro-->
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
+
+<main>
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <div class="py-5 h-100">
+        
+        <div class="card">
+            <div class="card-body p-0">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                <!-- Formulario -->
+                <div class="row g-0 d-flex justify-content-center">
+                    <div class="col-10 col-sm-4">
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                        <!-- Titulo -->
+                        <h1 class="fw-bold mb-0 pt-5 text-center">Sign Up</h1>
+                    
+                        <form method="POST" action="{{ route('register') }}" class="py-5">
+                            @csrf
+                            @if(isset($ruta))
+                                <input type="hidden" name="ruta" value="{{ $ruta }} " />
+                            @endif
+                            <div class="row g-0">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <!-- Nombre -->
+                                <div class="col-12 col-sm-5 mb-2 pe-0 pe-sm-2">
+                                    <label class="visually-hidden" for="name" :value="__('Name')">Nombre</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" :value="old('name')" required autofocus autocomplete="name">
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    </div> 
+                                </div>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <!-- Apellidos -->
+                                <div class="col-12 col-sm-7 mb-2 ps-0 ps-sm-2">
+                                    <label class="visually-hidden" for="surname" :value="__('Surname')">Apellidos</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                        <input type="text" name="surname" class="form-control" id="surname" placeholder="Apellidos" :value="old('surname')" required autofocus autocomplete="surname" />
+                                        <x-input-error :messages="$errors->get('surname')" class="mt-2" />
+                                    </div>
+                                </div>
+
+                                <!-- DNI -->
+                                <div class="col-12 col-sm-7 mb-2 pe-0 pe-sm-2">
+                                    <label class="visually-hidden" for="dni" :value="__('dni')">DNI</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                        <input type="text" name="dni" class="form-control" id="dni" placeholder="DNI" :value="old('dni')" required autofocus autocomplete="dni" />
+                                        <x-input-error :messages="$errors->get('dni')" class="mt-2" />
+                                    </div>
+                                </div>
+
+                                <!-- Telefono -->
+                                <div class="col-12 col-sm-5 mb-2 ps-0 ps-sm-2">
+                                    <label class="visually-hidden" for="phone" :value="__('phone')">Teléfono</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-telephone"></i>
+                                        </div>
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Teléfono" :value="old('phone')" required autofocus autocomplete="phone" />
+                                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                                    </div>
+                                </div>
+
+                                <!-- E-mail -->
+                                <div class="col-12 mb-2">
+                                    <label class="visually-hidden" for="email" :value="__('Email')">E-mail</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                        <input type="text" name="email" class="form-control" id="email" placeholder="E-mail" :value="old('email')" required autofocus autocomplete="email" />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="col-12 col-sm-6 mb-2 pe-0 pe-sm-2">
+                                    <label class="visually-hidden" for="password" :value="__('Password')">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </div>
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required autofocus autocomplete="new-password" />
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                                </div>
+
+                                <!-- Password Confirmar -->
+                                <div class="col-12 col-sm-6 mb-2 ps-0 ps-sm-2">
+                                    <label class="visually-hidden" for="password_confirmation" :value="__('Confirm Password')">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </div>
+                                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirmar Contraseña" required autofocus autocomplete="new-password" />
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row g-0 ps-5 py-1 mb-4 d-flex justify-content-center">
+                                    
+                                    <!-- Forgot Pass -->
+                                    <div class="col-6">
+                                        <div>
+                                            @if (Route::has('password.request'))
+                                                <a href="{{ route('login') }}">
+                                                    {{ __('¿Ya estás registrado?') }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- Login Button -->
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button class="login-btn btn-primary">
+                                        {{ __('Registrarse') }}
+                                    </button>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>    
                 </div>
+                <!-- End Formulario -->
             </div>
-        </div>
+        </div>    
     </div>
 </div>
+
+</main>
+
+
 @endsection
