@@ -17,7 +17,7 @@
                     <div class="col-10 col-sm-10">
 
                         <!-- Titulo -->
-                        <h1 class="fw-bold mb-0 pt-5 text-start">Nueva Categoría</h1>
+                        <h1 class="fw-bold mb-0 pt-5 text-start">Editar Categoría</h1>
                     
                         <form method="POST" action="{{ route('categorias.update', [$categoria]) }}" class="py-5"> 
                             @csrf
@@ -48,7 +48,7 @@
                                         <select name="categoria_id" id="categoria_id" class="form-control form-select">
                                             <option value="">Sin categoria padre</option>
                                             @foreach($categorias as $categoria)
-                                            <option value="{{ $categoria->id }}" {{ $categoria->id == $categoria_padre->id ? 'selected' : '' }}>
+                                            <option value="{{ $categoria->id }}" {{ $categoria->id == old('parent_id', $categoria->parent_id) ? 'selected' : '' }} >
                                                 {{ $categoria->name }}
                                             </option>
                                             @endforeach 
